@@ -48,6 +48,7 @@ map     <a-s-left>  :tabprev<CR>
 "vnoremap <C-C>      "+y
 "imap    <S-CR>    <CR><CR>end<Esc>-cc
 
+
 " Cucumber navigation commands
 autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
 autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
@@ -59,3 +60,6 @@ au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowriteb
 au BufReadPost *.gpg :%!gpg -d 2>/dev/null
 au BufWritePre *.gpg :%!gpg -e -r 'pmorgan@factech.com' 2>/dev/null
 au BufWritePost *.gpg u
+
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
