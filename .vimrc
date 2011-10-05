@@ -17,10 +17,9 @@ set smarttab
 set wildmenu
 set number
 set incsearch
-
-" Tab completion options
 set wildmode=list:longest,list:full
 set complete=.,w,t
+set backspace=indent,eol,start
 
 syntax on
 filetype on
@@ -47,13 +46,7 @@ map     <a-s-left>  :tabprev<CR>
 "cmap    <C-V>       <C-R>+
 "vnoremap <C-C>      "+y
 "imap    <S-CR>    <CR><CR>end<Esc>-cc
-
-
-" Cucumber navigation commands
-autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
-autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
-" :Cuc my text (no quotes) -> runs cucumber scenarios containing "my text"
-command! -nargs=+ Cuc :!ack --no-heading --no-break <q-args> | cut -d':' -f1,2 | xargs bundle exec cucumber --no-color
+"
 
 " GPG integration
 au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
@@ -61,5 +54,7 @@ au BufReadPost *.gpg :%!gpg -d 2>/dev/null
 au BufWritePre *.gpg :%!gpg -e -r 'pmorgan@factech.com' 2>/dev/null
 au BufWritePost *.gpg u
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+" Automatically start NERDTree
+"autocmd VimEnter * NERDTree
+" After selecting a file in NERDTree, switch to buffer
+"autocmd VimEnter * wincmd p
