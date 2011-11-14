@@ -1,0 +1,2 @@
+#!/bin/bash
+git log HEAD^1.. --name-status
