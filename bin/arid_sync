@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ARID=~/.arid
+
+# Sync vim configuration
+rsync -av ~/.vim $ARID/
+rsync -av ~/.vimrc ~$ARID/

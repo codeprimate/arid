@@ -1,8 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/codeprimate/Code/DesignMetrics/v2/test'
 let g:netrw_dirhist_2='/home/codeprimate/Code/DesignMetrics/v2/app/controllers'
 let g:netrw_dirhist_3='/boot'
 let g:netrw_dirhist_4='/home/codeprimate/Code/DesignMetrics/v2/lib'
 let g:netrw_dirhist_5='/home/codeprimate/Code/DesignMetrics/v2/app/models'
 let g:netrw_dirhist_6='/etc/network/if-up.d'
+let g:netrw_dirhist_7='/Users/pmorgan/Code/sfm/.git'
