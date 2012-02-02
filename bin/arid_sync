@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARID=~/.arid
+set ARID = "$HOME/.arid"
 
 # Sync vim configuration
 rsync -av ~/.vim $ARID/
