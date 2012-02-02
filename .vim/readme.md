@@ -1,80 +1,96 @@
-# ctrlp.vim
-Full path fuzzy __file__, __buffer__, __mru__ and __tag__ finder for Vim.
+# ack.vim #
 
-* Written in pure Vimscript for MacVim and Vim 7.0+.
-* Full support for Vim’s regexp as search pattern.
-* Built-in Most Recently Used (MRU) files monitoring.
-* Built-in project’s root finder.
-* Open Multiple Files.
-* [Extensible][3].
+This plugin is a front for the Perl module
+[App::Ack](http://search.cpan.org/~petdance/ack/ack).  Ack can be used as a
+replacement for 99% of the uses of _grep_.  This plugin will allow you to run
+ack from vim, and shows the results in a split window.
 
-![ctrlp][1]
+The *Official Version* of this plugin is available at [vim.org](http://www.vim.org/scripts/script.php?script_id=2572).
 
-## Basic Usage
-* Press `<c-p>` or run `:CtrlP` to invoke CtrlP in find file mode.
-* Or run `:CtrlPBuffer` or `:CtrlPMRU` to invoke CtrlP in buffer or MRU mode.
+## Installation ##
 
-Once CtrlP is open:
 
-* Press `<c-f>` and `<c-b>` to switch between find file, buffer, and MRU file modes.
-* Press `<c-d>` to switch to filename only search instead of full path.
-* Press `<F5>` to purge the cache for the current directory and get new files.
-* Use `*` or `|` in the prompt to submit the string as a Vim’s regexp pattern.
-* Or press `<c-r>` to switch to regexp mode.
-* End the input string with a colon `:` followed by a command to execute after opening the file.  
-e.g. `abc:45` will open the file matched the pattern and jump to line 45.
-* Submit two dots `..` as the input string to go backward the directory tree by 1 level.
-* Use `<c-y>` to create a new file and its parent dirs.
-* Use `<c-z>` to mark/unmark files and `<c-o>` to open them.
+### Ack
 
-## Basic Options
-* Change the mapping to invoke CtrlP:
+You have to install [ack](http://betterthangrep.com/), of course.
 
-    ```vim
-    let g:ctrlp_map = '<c-p>'
-    ```
+Install on Debian / Ubuntu with:
 
-* When CtrlP is invoked, it automatically sets the working directory according to this variable:
+    sudo apt-get install ack-grep
 
-    ```vim
-    let g:ctrlp_working_path_mode = 2
-    ```
+For Debian / Ubuntu you can add this line into your .vimrc:
 
-    0 - don’t manage working directory.  
-    1 - the parent directory of the current file.  
-    2 - the nearest ancestor that contains one of these directories or files:
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-        .git/
-        .hg/
-        .bzr/
-        _darcs/
-        root.dir
+Install on Gentoo with:
 
-* If you want to exclude directories or files from the search, you can use the Vim’s option `wildignore`
-and/or the option `g:ctrlp_custom_ignore`.  
-Examples:
+    sudo emerge ack
 
-    ```vim
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
-    set wildignore+=.git\*,.hg\*,.svn\*         " for Windows
+Install with Homebrew:
 
-    let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$',
-      \ 'link': 'some_bad_symbolic_links',
-      \ }
-    ```
+    brew install ack
 
-* Use a custom file listing command with:
+Install with MacPorts:
 
-    ```vim
-    let g:ctrlp_user_command = 'find %s -type f'       " MacOSX/Linux
-    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
-    ```
+    sudo port install p5-app-ack
 
-_Check [the docs][2] for more mappings, commands and options._
+Install with Gentoo Prefix
 
-[1]: http://i.imgur.com/yIynr.png
-[2]: https://github.com/kien/ctrlp.vim/blob/master/doc/ctrlp.txt
-[3]: https://github.com/kien/ctrlp.vim/tree/extensions
+    emerge ack
+
+Otherwise, you are on your own.
+
+### The Plugin
+
+If you have [Rake](http://rake.rubyforge.org/) installed, you can just run: `rake install`.
+
+Otherwise, the file ack.vim goes in ~/.vim/plugin, and the ack.txt file belongs in ~/.vim/doc.  Be sure to run
+
+    :helptags ~/.vim/doc
+
+afterwards.
+
+
+## Usage ##
+
+    :Ack [options] {pattern} [{directory}]
+
+Search recursively in {directory} (which defaults to the current directory) for the {pattern}.
+
+Files containing the search term will be listed in the split window, along with
+the line number of the occurrence, once for each occurrence.  [Enter] on a line
+in this window will open the file, and place the cursor on the matching line.
+
+Just like where you use :grep, :grepadd, :lgrep, and :lgrepadd, you can use `:Ack`, `:AckAdd`, `:LAck`, and `:LAckAdd` respectively. (See `doc/ack.txt`, or install and `:h Ack` for more information.)
+
+**From the [ack docs](http://betterthangrep.com/)** (my favorite feature):
+
+    --type=TYPE, --type=noTYPE
+
+        Specify the types of files to include or exclude from a search. TYPE is a filetype, like perl or xml. --type=perl can also be specified as --perl, and --type=noperl can be done as --noperl.
+
+        If a file is of both type "foo" and "bar", specifying --foo and --nobar will exclude the file, because an exclusion takes precedence over an inclusion.
+
+        Type specifications can be repeated and are ORed together.
+
+        See ack --help=types for a list of valid types.
+
+### Keyboard Shortcuts ###
+
+In the quickfix window, you can use:
+
+    o    to open (same as enter)
+    go   to preview file (open but maintain focus on ack.vim results)
+    t    to open in new tab
+    T    to open in new tab silently
+    v    to open in vertical split
+    gv   to open in vertical split silently
+    q    to close the quickfix window
+
+This Vim plugin is derived (and by derived, I mean copied, essentially) from
+Antoine Imbert's blog post [Ack and Vim
+Integration](http://blog.ant0ine.com/typepad/2007/03/ack-and-vim-integration.html) (in
+particular, the function at the bottom of the post).  I added a help file that
+provides just enough reference to get you going.  I also highly recommend you
+check out the docs for the Perl script 'ack', for obvious reasons: [ack -
+grep-like text finder](http://betterthangrep.com/).

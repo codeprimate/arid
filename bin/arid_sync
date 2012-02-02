@@ -3,5 +3,5 @@
 set ARID = "$HOME/.arid"
 
 # Sync vim configuration
-rsync -av ~/.vim $ARID/
-rsync -av ~/.vimrc ~$ARID/
+rsync -avz $HOME/.vim $ARID/
+rsync -avz $HOME/.vimrc $ARID/
