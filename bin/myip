@@ -1,0 +1,2 @@
+#!/bin/bash
+ifconfig | grep -E -A 4 "en[0-9]" | grep -E "inet[^6]" | awk '{print $2}'
