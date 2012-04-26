@@ -26,9 +26,6 @@ filetype on
 filetype plugin on
 filetype indent on
 
-"set foldmethod=indent
-"set foldlevel=1
-
 " GVIM config
 if has("gui_running")
 	colorscheme evening
@@ -40,13 +37,26 @@ if has("gui_running")
 endif
 
 " Custom Keybindings
+let mapleader=","
 map     <C-T>       :tabnew<CR>
 map			<a-s-right> :tabnext<CR>
 map     <a-s-left>  		:tabprev<CR>
+map 		<Leader>n :NERDTreeToggle<CR>
+map 		<Leader>a :Ack<space>
+
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
+
+if has("autocmd") && exists("+omnifunc")
+	autocmd Filetype *
+			\	if &omnifunc == "" |
+			\		setlocal omnifunc=syntaxcomplete#Complete |
+			\	endif
+endif
 
 " GPG integration
 au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
 au BufReadPost *.gpg :%!gpg -d 2>/dev/null
 au BufWritePre *.gpg :%!gpg -e -r 'pmorgan@factech.com' 2>/dev/null
 au BufWritePost *.gpg u
-
