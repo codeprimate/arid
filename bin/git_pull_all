@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+CURRENT_BRANCH=`git br | grep '*' | awk '{print $2}'`
+
+for branch in `git br|sed -e 's/\*//g'`; do \
+	echo ""
+	echo " * Fetching $branch"
+	git checkout $branch
+	git pull origin $branch
+done
+git checkout $CURRENT_BRANCH
