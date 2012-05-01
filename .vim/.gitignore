@@ -1,1 +1,4 @@
-tags
+*.swp
+*.un~
+tmp
+doc/tags
