@@ -1,6 +1,15 @@
 #!/bin/bash 
 
-set CURRENT=`git br | grep '*' | awk '{print $2}'`
-for x in `git br | grep SFM| sed -e 's/\*//g'`; do echo; echo "* $x"; git checkout $x; git pull origin $x ;  git push origin $x; done
+CURRENT=`git br | grep '*' | awk '{print $2}'`
+for x in `git br | grep SFM| sed -e 's/\*//g'` 
+do 
+	echo
+	echo "* $x"
+	git checkout -q $x
+	echo "  - Updating"
+	git pull origin -q $x 
+	echo "  - Pushing"
+	git push origin -q $x
+done
 
-git checkout $CURRENT
+git checkout -q $CURRENT

@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+echo " * Getting latest production branch..." 
+git co -q production
+git pull -q
+git co -q hotfix
+git pull -q
+echo " * Updating hotfix branch"
+git merge -q production
+echo " * Creating feature branch $1"
+git co -b $1 
+
