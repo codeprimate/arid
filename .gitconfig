@@ -13,5 +13,9 @@
 [merge]
 	tool = vimdiff
 [user]
-	name = 
-	email = 
+	name = Patrick Morgan
+	email = patrick@patrick-morgan.net
+[github]
+	user = codeprimate
+[branch]
+	autosetupmerge = true
