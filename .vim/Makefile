@@ -1,11 +1,11 @@
-all : webapi-vim.zip
+all : gist-vim.zip
 
 remove-zip:
 	-rm -f doc/tags
-	-rm -f webapi-vim.zip
+	-rm -f gist-vim.zip
 
-webapi-vim.zip: remove-zip
-	zip -r webapi-vim.zip autoload doc README
+gist-vim.zip: remove-zip
+	zip -r gist-vim.zip autoload plugin doc README.mkd
 
-release: webapi-vim.zip
-	vimup update-script webapi.vim
+release: gist-vim.zip
+	vimup update-script gist.vim

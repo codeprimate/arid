@@ -29,11 +29,11 @@ filetype indent on
 " Custom Keybindings
 let mapleader=","
 map     <C-T> :tabnew<CR>
-map			<a-s-right> :tabnext<CR>
-map     <a-s-left> :tabprev<CR>
-map 		<Leader>n :NERDTreeToggle<CR>
-map 		<Leader>a :Ack<space>
-map     <Leader>l :TlistToggle<CR>
+map			<C-s-right> :tabnext<CR>
+map     <C-s-left> :tabprev<CR>
+map     <Leader>n :NERDTreeToggle<CR>
+map     <Leader>A :Ack<space>
+map     <Leader>l :TagbarToggle<CR>
 
 " Auto-complete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
