@@ -1,220 +1,95 @@
-### Gist.vim
+![Headlights in Action][2]
 
-This is a vimscript for creating gists (http://gist.github.com).
+Headlights adds a `Bundles` [^1] menu to Vim, revealing your bundles (aka.
+plugins) and the features they provide.
 
-For the latest version please see https://github.com/mattn/gist-vim.
+Headlights creates a menu for each currently loaded [^2] bundle, grouping
+together docs, commands, mappings, abbreviations, functions, highlights, and
+plugin files.
 
-## Usage:
+Combined with a powerful bundle manager, Headlights will improve your ~~Vim
+user experience~~ quality of life.
 
-- Post current buffer to gist, using default privacy option.
+## Get Headlights
 
-        :Gist
+__NOTE:__ Headlights requires Vim 7+ compiled with Python 2.6+ support.
 
-- Post selected text to gist, using default privacy option.
-  This applies to all permutations listed below (except multi).
+#### The Recommended Way
 
-        :'<,'>Gist
+Using [Vundle] [3]:
 
-- Create a private gist.
+1. Add the following line to the Vundle section in your `.vimrc`:
 
-        :Gist -p
+    `Bundle 'mbadran/headlights'`
 
-- Create a public gist.
-  (Only relevant if you've set gists to be private by default.)
+2. Run the following Vim command:
 
-        :Gist -P
+    `BundleInstall`
 
->  This is only relevant if you've set gists to be private by default;
-> if you get an empty gist list, try ":Gist --abandon".
+#### The Manual Way
 
-- Create a gist anonymously.
+1. [Download the latest package] [4].
 
-        :Gist -a
+2. Expand the archive's contents into your `vim` directory.
 
-- Create a gist with all open buffers.
+3. Run the following Vim command:
 
-        :Gist -m
+    `helptags <vim_dir>/<plugin_dir>/<headlights_dir>/doc/`
 
-- Edit the gist (you need to have opened the gist buffer first).
-  You can update the gist with the ":w" command within the gist buffer.
+## Explore the Options
 
-        :Gist -e
+`let g:headlights_use_plugin_menu = 0` (Disabled)
 
-- Edit the gist with name 'foo.js' (you need to have opened the gist buffer
-  first).
+`let g:headlights_smart_menus = 1` (Enabled)
 
-        :Gist -e foo.js
+`let g:headlights_show_commands = 1` (Enabled)
 
-- Post/Edit with the description " (you need to have opened the gist buffer
-  first). >
+`let g:headlights_show_mappings = 1` (Enabled)
 
-    :Gist -s something
-    :Gist -e -s something
+`let g:headlights_show_abbreviations = 0` (Disabled)
 
-- Delete the gist (you need to have opened the gist buffer first).
-  Password authentication is needed.
+`let g:headlights_show_functions = 0` (Disabled)
 
-        :Gist -d
+`let g:headlights_show_highlights = 0` (Disabled)
 
-- Fork the gist (you need to have opened the gist buffer first).
-  Password authentication is needed.
+`let g:headlights_show_files = 0` (Disabled)
 
-        :Gist -f
+`let g:headlights_show_load_order = 0` (Disabled)
 
-- Star the gist (you need to have opened the gist buffer first).
-  Password authentication is needed.
+`let g:headlights_debug_mode = 0` (Disabled)
 
-        :Gist +1
+`let g:headlights_run_on_startup = 0` (Disabled)
 
-- Unstar the gist (you need to have opened the gist buffer first).
-  Password authentication is needed.
+`let g:headlights_spillover_menus = 0` (Disabled)
 
-        :Gist -1
+## Go Deeper
 
-- Get gist XXXXX.
+Refer to the Headlights help document:
 
-        :Gist XXXXX
+`Bundles > a - i > headlights > Help`
 
-- Get gist XXXXX and add to clipboard.
+`:help headlights`
 
-        :Gist -c XXXXX
+#### Protip
 
-- List your public gists.
+If you use MacVim, you can quickly access any plugin by typing its name. For
+example, hit `CMD-?` to bring up a search dialog for menu items, then type `fug
+open` to reveal the `fugitive.vim` file as the first result. You can also type
+`fug help` to quickly access the documentation. I do this, like, _all the time_.
 
-        :Gist -l
+* * *
 
-- List gists from user "mattn".
+[^1]: Headlights is inspired by TextMate's Bundles menu.
 
-        :Gist -l mattn
+[^2]: Headlights mirrors Vim's `scriptnames` command, revealing only the
+      bundles that are currently loaded. This is fast because it avoids file
+      system access, but the trade off is that autoload and ftplugin scripts
+      are not revealed until they are needed. (This is Good Enough ™.)
 
-- List everyone's gists.
+[1]: http://www.vim.org/
 
-        :Gist -la
+[2]: https://github.com/mbadran/headlights/raw/master/headlights_ss.png
 
-- List gists from your starred gists.
+[3]: https://github.com/gmarik/vundle
 
-        :Gist -ls
-
-## Tips:
-
-If you set g:gist_clip_command, gist.vim will copy the gist code with option
-'-c'.
-
-- Mac:
-
-        let g:gist_clip_command = 'pbcopy'
-
-- Linux:
-
-        let g:gist_clip_command = 'xclip -selection clipboard'
-
-- Others (cygwin?):
-
-        let g:gist_clip_command = 'putclip'
-
-If you want to detect filetype from the filename:
-
-    let g:gist_detect_filetype = 1
-
-If you want to open browser after the post:
-
-    let g:gist_open_browser_after_post = 1
-
-If you want to change the browser:
-
-    let g:gist_browser_command = 'w3m %URL%'
-
-or:
-
-    let g:gist_browser_command = 'opera %URL% &'
-
-On windows, this should work with your user settings.
-
-If you want to show your private gists with ":Gist -l":
-
-    let g:gist_show_privates = 1
-
-If you want your gist to be private by default:
-
-    let g:gist_post_private = 1
-
-If you want to manipulate multiple files in a gist:
-
-    let g:gist_get_multiplefile = 1
-
-You need to either set global git config:
-
-	$ git config --global github.user Username
-
-## Requirements:
-
-- curl command (http://curl.haxx.se/)
-- webapi-vim (https://github.com/mattn/webapi-vim)
-- and if you want to use your git profile, the git command-line client.
-
-## License:
-
-    Copyright 2010 by Yasuhiro Matsumoto
-    modification, are permitted provided that the following conditions are met:
-
-    1. Redistributions of source code must retain the above copyright notice,
-       this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright notice,
-       this list of conditions and the following disclaimer in the documentation
-       and/or other materials provided with the distribution.
-
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-    ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-    REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-    STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
-    OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-## Install:
-
-Copy it to your plugin directory.
-gist.vim will create a curl cookie-jar file in your runtimepath.
-
-- rtp:
-  - plugin/gist.vim
-  - cookies/github
-
-If you want to uninstall gist.vim, remember to also remove `~/.gist-vim`.
-
-## Setup:
-
-This plugin uses github API v3. Setting value is stored in `~/.gist.vim`.
-gist-vim have two ways to access APIs.
-
-### Basic Auth
-
-Require github user ID and password. This is easy but not secure.
-
-### OAuth2
-
-1. Register your application.
-
-Note that you must set `Callback URL` as same as following.
-
-https://github.com/settings/applications/new
-
-fill like following
-
-![](http://mattn.github.com/gist-vim/static/image/setting1.png)
-
-2. Start `:Gist -l`
-
-You'll see some prompts. fill ClientID/CilentSecret. Then you can see browser show up.
-
-![](http://mattn.github.com/gist-vim/static/image/setting2.png)
-
-This is a PIN code.
-
-Copy this value and paste to prompt `PIN:`.
+[4]: https://github.com/mbadran/headlights/downloads

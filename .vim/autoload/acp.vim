@@ -177,7 +177,7 @@ function acp#onPopupCloseSnipmate()
   let word = s:getCurrentText()[s:posSnipmateCompletion :]
   for trigger in keys(GetSnipsInCurrentScope())
     if word ==# trigger
-      call feedkeys("\<C-r>=TriggerSnippet()\<CR>", "n")
+      call feedkeys("\<C-r>=snipMate#TriggerSnippet()\<CR>", "n")
       return 0
     endif
   endfor
