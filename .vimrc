@@ -33,6 +33,8 @@ filetype on
 filetype plugin on
 filetype indent on
 
+set tags+=~/.vim/tags/vim_cpp_tags
+
 " Auto-complete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
@@ -46,8 +48,10 @@ if has("gui_running")
 	set guioptions-=T  "remove toolbar
 	set guioptions-=r  "remove right-hand scroll bar
 	set guioptions-=L  "remove left-hand scroll bar
-	set guifont=Menlo:h13
+	set guifont=Source\ Code\ Pro\ for\ Powerline:h13
 endif
+
+let g:Powerline_symbols = 'fancy'
 
 " GPG integration
 au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
