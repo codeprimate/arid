@@ -1,3 +1,4 @@
 .VimballRecord
 *.swp
 *.un~
+.DS_Store

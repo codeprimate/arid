@@ -9,6 +9,7 @@ set bs=2
 set cindent
 set complete=.,w,b,u,t,i
 set cursorline
+set expandtab
 set ignorecase
 set incsearch
 set laststatus=2
@@ -23,17 +24,17 @@ set smarttab
 set tabstop=2
 set wildmenu
 set wildmode=list:longest,list:full
-set statusline=%t%{fugitive#statusline()}[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+""set statusline=%t%{fugitive#statusline()}[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 
 let g:ragtag_global_maps = 1
+let g:Powerline_symbols = 'fancy'
+let g:svndiff_autoupdate = 1 
 
 " Syntax Highlighting and indent
 syntax on
 filetype on
 filetype plugin on
 filetype indent on
-
-set tags+=~/.vim/tags/vim_cpp_tags
 
 " Auto-complete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
@@ -48,15 +49,14 @@ if has("gui_running")
 	set guioptions-=T  "remove toolbar
 	set guioptions-=r  "remove right-hand scroll bar
 	set guioptions-=L  "remove left-hand scroll bar
-	set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+	set guifont=Source\ Code\ Pro\ for\ Powerline:h11
 endif
 
-let g:Powerline_symbols = 'fancy'
 
 " GPG integration
 au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
 au BufReadPost *.gpg :%!gpg -d 2>/dev/null
-au BufWritePre *.gpg :%!gpg -e -r 'pmorgan@factech.com' 2>/dev/null
+au BufWritePre *.gpg :%!gpg -e -r 'pmorgan@crossroads.com' 2>/dev/null
 au BufWritePost *.gpg u
 
 " Custom Keybindings
