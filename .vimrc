@@ -24,11 +24,13 @@ set smarttab
 set tabstop=2
 set wildmenu
 set wildmode=list:longest,list:full
-""set statusline=%t%{fugitive#statusline()}[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
 
 let g:ragtag_global_maps = 1
 let g:Powerline_symbols = 'fancy'
 let g:svndiff_autoupdate = 1 
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$' 
+
 
 " Syntax Highlighting and indent
 syntax on
@@ -36,11 +38,16 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" Auto-complete
+" Auto-complete for Ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
+" Java commenting
+autocmd FileType java let b:jcommenter_class_author='Patrick Morgan (patrick@patrick-morgan.net)' 
+autocmd FileType java let b:jcommenter_file_author='Patrick Morgan (patrick@patrick-morgan.net)' 
+autocmd FileType java map <Leader>c :call JCommentWriter()<CR> 
 
 " GVIM/mvim config
 if has("gui_running")
@@ -49,7 +56,7 @@ if has("gui_running")
 	set guioptions-=T  "remove toolbar
 	set guioptions-=r  "remove right-hand scroll bar
 	set guioptions-=L  "remove left-hand scroll bar
-	set guifont=Source\ Code\ Pro\ for\ Powerline:h11
+	set guifont=Source\ Code\ Pro\ for\ Powerline:h13
 endif
 
 
@@ -67,3 +74,4 @@ map     <C-s-left> :tabprev<CR>
 map     <Leader>n :NERDTreeToggle<CR>
 map     <Leader>A :Ack<space>
 map     <Leader>l :TagbarToggle<CR>
+
