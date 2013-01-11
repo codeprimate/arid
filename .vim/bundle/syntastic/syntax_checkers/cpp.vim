@@ -11,7 +11,6 @@
 "============================================================================
 
 " in order to also check header files add this to your .vimrc:
-" (this usually creates a .gch file in your source directory)
 "
 "   let g:syntastic_cpp_check_header = 1
 "
@@ -77,6 +76,10 @@ if !exists('g:syntastic_cpp_compiler')
     let g:syntastic_cpp_compiler = 'g++'
 endif
 
+if !exists('g:syntastic_cpp_compiler_options')
+    let g:syntastic_cpp_compiler_options = ''
+endif
+
 if !executable(g:syntastic_cpp_compiler)
     finish
 endif
@@ -89,17 +92,14 @@ if !exists('g:syntastic_cpp_config_file')
 endif
 
 function! SyntaxCheckers_cpp_GetLocList()
-    let makeprg = g:syntastic_cpp_compiler . ' -fsyntax-only '
+    let makeprg = g:syntastic_cpp_compiler . ' -fsyntax-only ' .
+                \ g:syntastic_cpp_compiler_options
     let errorformat =  '%-G%f:%s:,%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: '.
                 \ '%m,%f:%l:%c: %m,%f:%l: %trror: %m,%f:%l: %tarning: %m,'.
                 \ '%f:%l: %m'
 
     if exists('g:syntastic_cpp_errorformat')
         let errorformat = g:syntastic_cpp_errorformat
-    endif
-
-    if exists('g:syntastic_cpp_compiler_options')
-        let makeprg .= g:syntastic_cpp_compiler_options
     endif
 
     let makeprg .= ' ' . shellescape(expand('%')) .
@@ -109,6 +109,7 @@ function! SyntaxCheckers_cpp_GetLocList()
         if exists('g:syntastic_cpp_check_header')
             let makeprg = g:syntastic_cpp_compiler.' -c '.shellescape(expand('%')) .
                         \ ' ' . g:syntastic_cpp_compiler_options .
+                        \ ' ' . syntastic#c#GetNullDevice() .
                         \ ' ' . syntastic#c#GetIncludeDirs('cpp')
         else
             return []
