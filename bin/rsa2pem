@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+IN=$1
+OUT=`basename $1`
+
+if [ -z $IN ]
+then
+  echo "Need input file"
+  exit 1
+fi
+
+openssl rsa -in $IN -outform pem > $OUT.pem

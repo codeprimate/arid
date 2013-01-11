@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+PEM=$1
+
+if [ -z $PEM ]; then 
+  exit 1
+fi
+
+cp $PEM.pem $PEM.copy.pem
+ssh-keygen -p -f $PEM.copy.pem
+ssh-keygen -e -f $PEM.copy.pem >> $PEM.copy.pem.pub
+#set SSH PublicKey Properties "Use identity" to the file $PEM.copy.pem
