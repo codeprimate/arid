@@ -1,3 +1,4 @@
+# Ignores
 --ignore-dir=coverage
 --ignore-dir=reports
 --ignore-dir=lib/converter
@@ -11,4 +12,15 @@
 --ignore-dir=tmp
 --ignore-dir=log
 --ignore-dir=doc/app
+--ignore-dir=node_modules
 --nosql
+
+# File Types
+--type-add=css=scss
+--type-add=ruby=.haml,.rselm,.feature,.ru,.lock
+--type-set=coffeescript=.coffee
+--type-set=coffee=.coffee
+--type-set=coffee=.coffee
+--type-set=jade=.jade
+--type-set=feature=.feature
+--type-set=json=.json
