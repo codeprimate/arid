@@ -706,7 +706,7 @@ function! s:readable_calculate_file_type() dict abort
     else
       let r = "controller"
     endif
-  elseif f =~ '_api\.rb'
+  elseif f =~ '\<app/apis/.*_api\.rb'
     let r = "api"
   elseif f =~ '\<test/test_helper\.rb$'
     let r = "test"
@@ -746,8 +746,12 @@ function! s:readable_calculate_file_type() dict abort
     let r = "test-functional"
   elseif f =~ '\<test/integration/.*_test\.rb$'
     let r = "test-integration"
+  elseif f =~ '\<test/lib/.*_test\.rb$'
+    let r = "test-lib"
   elseif f =~ '\<test/\w*s/.*_test\.rb$'
     let r = s:sub(f,'.*<test/(\w*)s/.*','test-\1')
+  elseif f =~ '\<test/.*_test\.rb'
+    let r = "test"
   elseif f =~ '\<spec/lib/.*_spec\.rb$'
     let r = 'spec-lib'
   elseif f =~ '\<lib/.*\.rb$'
@@ -770,8 +774,6 @@ function! s:readable_calculate_file_type() dict abort
     endif
   elseif f =~ '\<\%(test\|spec\)/\%(factories\|fabricators\)\>'
     let r = "fixtures-replacement"
-  elseif f =~ '\<test/.*_test\.rb'
-    let r = "test"
   elseif f =~ '\<spec/.*_spec\.rb'
     let r = "spec"
   elseif f =~ '\<spec/support/.*\.rb'
@@ -833,7 +835,7 @@ function! s:app_default_locale() dict abort
     let candidates = map(filter(
           \ s:readfile(self.path('config/application.rb')) + s:readfile(self.path('config/environment.rb')),
           \ 'v:val =~ "^ *config.i18n.default_locale = :[\"'']\\=[A-Za-z-]\\+[\"'']\\= *$"'
-          \ ), 'matchstr(v:val,"[A-Za-z-]\\+[\"'']\\= *$")')
+          \ ), 'matchstr(v:val,"[A-Za-z-]\\+\\ze[\"'']\\= *$")')
     call self.cache.set('default_locale', get(candidates, 0, 'en'))
   endif
   return self.cache.get('default_locale')
@@ -2137,6 +2139,9 @@ function! s:RailsFind()
   let res = s:sub(s:sub(s:findasymbol('partial','\1'),'^/',''),'[^/]+$','_&')
   if res != ""|return res."\n".s:findview(res)|endif
 
+  let res = s:sub(s:sub(s:findfromview('json\.(\=\s*\%(:partial\s\+=>\|partial!\)\s*','\1'),'^/',''),'[^/]+$','_&')
+  if res != ""|return res."\n".s:findview(res)|endif
+
   let res = s:sub(s:sub(s:findfromview('render\s*(\=\s*\%(:partial\s\+=>\|partial:\)\s*','\1'),'^/',''),'[^/]+$','_&')
   if res != ""|return res."\n".s:findview(res)|endif
 
@@ -3201,15 +3206,24 @@ function! s:readable_alternate_candidates(...) dict abort
     return [migration . (exists('lastmethod') && !empty(lastmethod) ? '#'.lastmethod : '')]
   elseif f =~# '\<application\.js$'
     return ['app/helpers/application_helper.rb']
+  elseif f =~# 'spec\.js$'
+    return [s:sub(s:sub(f, 'spec/javascripts', 'app/assets/javascripts'), '_spec.js', '.js')."\n"]
   elseif self.type_name('javascript')
-    return ['app/assets/javascripts/application.js', 'public/javascripts/application.js']
+    if f =~ 'public/javascripts'
+      let to_replace = 'public/javascripts'
+    else
+      let to_replace = 'app/assets/javascripts'
+    endif
+    return [s:sub(s:sub(f, to_replace, 'spec/javascripts'), '.js', '_spec.js')."\n"]
   elseif self.type_name('db-schema') || f =~# '^db/\w\+_structure.sql$'
     return ['db/seeds.rb']
   elseif f ==# 'db/seeds.rb'
     return ['db/schema.rb', 'db/'.s:environment().'_structure.sql']
   elseif self.type_name('test')
     let app_file = s:sub(s:sub(f, '<test/', 'app/'), '_test\.rb$', '.rb')
-    if app_file =~# '\<app/unit/helpers/'
+    if app_file =~# '\<app/lib/'
+      return [s:sub(app_file,'<app/lib/','lib/')]
+    elseif app_file =~# '\<app/unit/helpers/'
       return [s:sub(app_file,'<app/unit/helpers/','app/helpers/')]
     elseif app_file =~# '\<app/functional/.*_controller\.rb'
       return [s:sub(app_file,'<app/functional/','app/controllers/')]
@@ -3438,6 +3452,8 @@ function! s:invertrange(beg,end)
       let add = s:migspc(line).'change_column'.s:mextargs(line,2).s:mkeep(line)
     elseif line =~ '\<change_column_default\>'
       let add = s:migspc(line).'change_column_default'.s:mextargs(line,2).s:mkeep(line)
+    elseif line =~ '\<change_column_null\>'
+      let add = s:migspc(line).'change_column_null'.s:mextargs(line,2).s:mkeep(line)
     elseif line =~ '\.update_all(\(["'."'".']\).*\1)$' || line =~ '\.update_all \(["'."'".']\).*\1$'
       " .update_all('a = b') => .update_all('b = a')
       let pre = matchstr(line,'^.*\.update_all[( ][}'."'".'"]')
@@ -3670,7 +3686,7 @@ function! s:BufSyntax()
       endif
       if buffer.type_name('db-migration','db-schema')
         syn keyword rubyRailsMigrationMethod create_table change_table drop_table rename_table create_join_table drop_join_table
-        syn keyword rubyRailsMigrationMethod add_column rename_column change_column change_column_default remove_column remove_columns
+        syn keyword rubyRailsMigrationMethod add_column rename_column change_column change_column_default change_column_null remove_column remove_columns
         syn keyword rubyRailsMigrationMethod add_timestamps remove_timestamps
         syn keyword rubyRailsMigrationMethod add_reference remove_reference add_belongs_to remove_belongs_to
         syn keyword rubyRailsMigrationMethod add_index remove_index rename_index
@@ -3724,7 +3740,9 @@ function! s:BufSyntax()
       unlet! b:current_syntax
       let removenorend = !exists("g:html_no_rendering")
       let g:html_no_rendering = 1
+      let isk = &l:iskeyword
       syn include @htmlTop syntax/xhtml.vim
+      let &l:iskeyword = isk
       if removenorend
           unlet! g:html_no_rendering
       endif
@@ -4474,9 +4492,6 @@ function! s:BufSettings()
       call self.setvar('surround_5',   "\r\nend")
       call self.setvar('surround_69',  "\1expr: \1\rend")
       call self.setvar('surround_101', "\r\nend")
-    endif
-    if exists(':UltiSnipsAddFiletypes') == 2
-      UltiSnipsAddFiletypes rails
     endif
   elseif ft =~# 'yaml\>' || fnamemodify(self.name(),':e') ==# 'yml'
     call self.setvar('&define',self.define_pattern())
