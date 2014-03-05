@@ -77,7 +77,7 @@ if has("gui_running")
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
-  set guifont=Sauce\ Code\ Powerline:h12
+  set guifont=Sauce\ Code\ Powerline:h14
 endif
 
 "" Powerline
@@ -93,3 +93,8 @@ filetype indent on
 " IndentGuides
 let g:indent_guides_guide_size = 1
 autocmd FileType * IndentGuidesEnable
+autocmd FileType calendar IndentGuidesDisable
+
+" Vimwiki
+let g:vimwiki_use_calendar = 1
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'path_html': '~/Documents/vimwiki_html/', 'diary_rel_path' : ''}]
