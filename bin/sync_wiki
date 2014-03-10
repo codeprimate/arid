@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+VIMWIKI_PATH=~/Documents/vimwiki/
+cd $VIMWIKI_PATH
+echo "= VimWiki Sync"
+echo " * Recording changes..."
+git add -A
+git commit -qq -am 'stake'
+echo " * Merging remote updates..."
+git pull -qq
+echo " * Syncing Wiki..."
+git push -qq
+echo " * Done."
