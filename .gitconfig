@@ -3,6 +3,7 @@
 	ci = commit
 	co = checkout
 	br = branch
+  cl = !git log --format='format: * %s (%an: %ad) [%h]' --no-merges
 [color]
 	branch = auto
 	diff = auto
@@ -19,3 +20,7 @@
 	user = codeprimate
 [branch]
 	autosetupmerge = true
+[grep]
+  patternType = perl
+[push]
+	default = tracking
