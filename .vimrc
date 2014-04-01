@@ -3,9 +3,7 @@ call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
 set encoding=utf-8
-set autoindent
 set backspace=indent,eol,start
-set cindent
 set complete=.,w,b,u,t,i
 set cursorline
 set ignorecase
@@ -13,13 +11,9 @@ set incsearch
 set laststatus=2
 set mat=5
 set nocompatible
-set bs=2
-set tabstop=2
 set shiftwidth=2
-set expandtab
 set showmatch
 set smartcase
-set smarttab
 set wildmenu
 set wildmode=list:longest,list:full
 
@@ -85,6 +79,12 @@ set rtp+=~/.vim/powerline/powerline/bindings/vim
 let g:Powerline_symbols = 'fancy'
 
 "" Syntax Highlighting and indent
+set bs=2
+set tabstop=2
+set autoindent
+set cindent
+set expandtab
+set smarttab
 syntax on
 filetype on
 filetype plugin on

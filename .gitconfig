@@ -23,4 +23,4 @@
 [grep]
   patternType = perl
 [push]
-	default = tracking
+	default = upstream
