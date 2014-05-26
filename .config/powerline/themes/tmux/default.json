@@ -1,36 +1,42 @@
 {
   "default_module": "powerline.segments.common",
-  "segment_data": {
-    "uptime": {
-      "before": "⇑  "
-    },
-    "date": {
-      "before": "⌚ "
-    }
-  },
-  "segments": {
-    "right": [
-    {
-      "name": "uptime",
-      "priority": 50
-    },
-    {
-      "name": "system_load",
-      "priority": 50
-    },
-    {
-      "name": "date"
-    },
-    {
-      "name": "date",
-      "args": {
-        "format": "%H:%M",
-        "istime": true
+    "segment_data": {
+      "uptime": {
+        "before": "⇑  "
+      },
+      "date": {
+        "before": "⌚ "
+      },
+      "branch": {
+        "before": " "
       }
     },
-    {
-      "name": "hostname"
+    "segments": {
+      "right": [
+      {
+        "name": "branch"
+      },
+      {
+        "name": "uptime",
+        "priority": 50
+      },
+      {
+        "name": "system_load",
+        "priority": 50
+      },
+      {
+        "name": "date"
+      },
+      {
+        "name": "date",
+        "args": {
+          "format": "%H:%M",
+          "istime": true
+        }
+      },
+      {
+        "name": "hostname"
+      }
+      ]
     }
-    ]
-  }
 }
