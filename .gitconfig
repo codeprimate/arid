@@ -25,10 +25,6 @@
 [branch]
 	autosetupmerge = true
 [push]
-<<<<<<< Updated upstream
 	default = upstream
-=======
-	default = tracking
 [grep]
   patternType = perl
->>>>>>> Stashed changes
