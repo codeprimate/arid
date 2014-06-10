@@ -1,107 +1,95 @@
-=================
-Powerline for vim
-=================
+Powerline
+=========
 
 :Author: Kim Silkebækken (kim.silkebaekken+vim@gmail.com)
-:Source: https://github.com/Lokaltog/vim-powerline
-:Version: β
+:Source: https://github.com/Lokaltog/powerline
+:Version: beta
 
-Introduction
-------------
+**Powerline is a statusline plugin for vim, and provides statuslines and 
+prompts for several other applications, including zsh, bash, tmux, IPython, 
+Awesome and Qtile.**
 
-Powerline is a utility plugin which allows you to create better-looking, 
-more functional vim statuslines. See the screenshots below for 
-a demonstration of the plugin's capabilities.
+* `Support forum`_ (powerline-support@googlegroups.com)
+* `Development discussion`_ (powerline-dev@googlegroups.com)
 
-It's recommended that you install the plugin using Pathogen_ or Vundle_.  
-After the plugin is installed update your help tags and see ``:help 
-Powerline`` for instructions on how to enable and configure the plugin.
+.. image:: https://api.travis-ci.org/Lokaltog/powerline.png?branch=develop
+   :target: `travis-build-status`_
+   :alt: Build status
 
-See the `Troubleshooting`_ section below if you're having any issues with 
-the plugin or the font patcher.
+.. _travis-build-status: https://travis-ci.org/Lokaltog/powerline
+.. _`Support forum`: https://groups.google.com/forum/#!forum/powerline-support
+.. _`Development discussion`: https://groups.google.com/forum/#!forum/powerline-dev
 
-**Note:** You need a patched font to be able to use the symbols in the 
-statusline. An experimental Python/fontforge-based font patcher is included 
-in the ``fontpatcher`` directory. See ``fontpatcher/README.rst`` for usage 
-instructions.
+Features
+--------
 
-.. _Pathogen: https://github.com/tpope/vim-pathogen
-.. _Vundle: https://github.com/gmarik/vundle
+* **Extensible and feature rich, written in Python.** Powerline was 
+  completely rewritten in Python to get rid of as much vimscript as 
+  possible. This has allowed much better extensibility, leaner and better 
+  config files, and a structured, object-oriented codebase with no mandatory
+  third-party dependencies other than a Python interpreter.
+* **Stable and testable code base.** Using Python has allowed unit testing 
+  of all the project code. The code is tested to work in Python 2.6+ and 
+  Python 3.
+* **Support for prompts and statuslines in many applications.** Originally 
+  created exclusively for vim statuslines, the project has evolved to 
+  provide statuslines in tmux and several WMs, and prompts for shells like 
+  bash/zsh and other applications. It's simple to write renderers for any 
+  other applications that Powerline doesn't yet support.
+* **Configuration and colorschemes written in JSON.** JSON is 
+  a standardized, simple and easy to use file format that allows for easy 
+  user configuration across all of Powerline's supported applications.
+* **Fast and lightweight, with daemon support for even better performance.**
+  Although the code base spans a couple of thousand lines of code with no 
+  goal of "less than X lines of code", the main focus is on good performance 
+  and as little code as possible while still providing a rich set of 
+  features. The new daemon also ensures that only one Python instance is 
+  launched for prompts and statuslines, which provides excellent 
+  performance.
+
+*But I hate Python / I don't need shell prompts / this is just too much 
+hassle for me / what happened to the original vim-powerline project / …*
+
+You should check out some of the Powerline derivatives. The most lightweight
+and feature-rich alternative is currently Bailey Ling's `vim-airline 
+<https://github.com/bling/vim-airline>`_ project.
+
+------
+
+* Consult the `documentation 
+  <https://powerline.readthedocs.org/en/latest/>`_ for more information and 
+  installation instructions.
+* Check out `powerline-fonts <https://github.com/Lokaltog/powerline-fonts>`_ 
+  for pre-patched versions of popular, open source coding fonts.
 
 Screenshots
 -----------
 
-.. image:: http://i.imgur.com/MsuIB.png
+Vim statusline
+^^^^^^^^^^^^^^
 
-Troubleshooting
----------------
+**Mode-dependent highlighting**
 
-I can't see the fancy symbols, what's wrong?
-    Make sure that you have ``let g:Powerline_symbols = 'fancy'`` in your 
-    ``vimrc`` file. The settings may be loaded too late if you have this in 
-    ``gvimrc``, so always put this in your ``vimrc``.
+* .. image:: https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-normal.png
+     :alt: Normal mode
+* .. image:: https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-insert.png
+     :alt: Insert mode
+* .. image:: https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-visual.png
+     :alt: Visual mode
+* .. image:: https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-mode-replace.png
+     :alt: Replace mode
 
-    Clear the cache using ``:PowerlineClearCache`` and restart vim.
+**Automatic truncation of segments in small windows**
 
-    Make sure that you've configured gvim or your terminal emulator to use 
-    a patched font.
+* .. image:: https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-truncate1.png
+     :alt: Truncation illustration
+* .. image:: https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-truncate2.png
+     :alt: Truncation illustration
+* .. image:: https://raw.github.com/Lokaltog/powerline/develop/docs/source/_static/img/pl-truncate3.png
+     :alt: Truncation illustration
 
-    Make sure that vim is compiled with the ``--with-features=big`` flag.
+----
 
-The fancy symbols look a bit blurry or "off"!
-    Make sure that you have patched all variants of your font (i.e. both the 
-    regular and the bold font files).
+The font in the screenshots is `Pragmata Pro`_ by Fabrizio Schiavi.
 
-I'm unable to patch my font, what should I do?
-    Font patching is only known to work on most Linux and OS X machines. If 
-    you have followed the instructions in the fontpatcher README and still 
-    have problems, please submit an issue on GitHub.
-
-    You can download some community-contributed patched fonts from the 
-    `Powerline wiki`_ if you don't want to mess around with the font 
-    patcher.
-
-The Syntastic/Fugitive statusline flags don't work!
-    These flags should work without any configuration. If you installed 
-    either plugin after Powerline, you'll have to clear the cache using 
-    ``:PowerlineClearCache`` and restart vim.
-
-The colors are weird in the default OS X Terminal app!
-    The default OS X Terminal app is known to have some issues with the 
-    Powerline colors. Please use another terminal emulator. iTerm2 should 
-    work fine.
-
-    The arrows may have the wrong colors if you have changed the "minimum 
-    contrast" slider in the color tab of  your OS X settings.
-
-The statusline has strange characters like ``^B`` in it!
-    Please add ``set encoding=utf-8`` to your ``vimrc``.
-
-    You may also need to set your ``LANG`` and ``LC_*`` environment 
-    variables to a UTF-8 locale (e.g. ``LANG=en_US.utf8``). Consult your 
-    Linux distro's documentation for information about setting these 
-    variables correctly.
-
-The statusline has a lot of ``^`` or underline characters in it!
-    You need to configure the ``fillchars`` setting to disable statusline 
-    fillchars (see ``:h fillchars`` for details). Add this to your 
-    ``vimrc`` to solve this issue::
-
-        set fillchars+=stl:\ ,stlnc:\ 
-
-The statusline is hidden/only appears in split windows!
-    Make sure that you have ``set laststatus=2`` in your ``vimrc``.
-
-I'm using tmux and Powerline looks like crap, what's wrong?
-    You need to tell tmux that it has 256-color capabilities. Add this to 
-    your ``.tmux.conf`` to solve this issue::
-
-        set -g default-terminal "screen-256color"
-
-    If you use iTerm2, make sure that you have enabled the setting 'Set 
-    locale variables automatically' in Profiles > Terminal > Environment.
-
-If you have any other issues and you can't find the answer in the docs, 
-please submit an issue on GitHub.
-
-.. _`Powerline wiki`: https://github.com/Lokaltog/vim-powerline/wiki/Patched-fonts
+.. _`Pragmata Pro`: http://www.fsd.it/fonts/pragmatapro.htm
