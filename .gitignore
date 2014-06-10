@@ -3,3 +3,5 @@
 *.un~
 .DS_Store
 .netrwhist
+
+.viminfo
