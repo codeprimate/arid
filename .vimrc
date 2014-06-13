@@ -22,7 +22,7 @@ set nofoldenable
 
 " Misc
 let g:ragtag_global_maps = 1
-let g:svndiff_autoupdate = 1 
+let g:svndiff_autoupdate = 1
 
 " Auto-complete
 let g:SuperTabDefaultCompletionType = "context"
@@ -46,7 +46,7 @@ au BufWritePost *.gpg u
 
 " RuboCop Ruby linter leader binding
 let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop<CR>
+map <Leader>r :RuboCop<CR>
 
 " Custom Keybindings
 let mapleader=","
@@ -74,9 +74,9 @@ if has("gui_running")
   set guifont=Sauce\ Code\ Powerline:h14
 endif
 
-"" Powerline
-set rtp+=~/.vim/powerline/powerline/bindings/vim
-let g:Powerline_symbols = 'fancy'
+"" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 "" Syntax Highlighting and indent
 set bs=2
