@@ -13,7 +13,9 @@
 --ignore-dir=log
 --ignore-dir=doc/app
 --ignore-dir=node_modules
+--ignore-dir=.git
 --nosql
+--ignore-file=is:tags
 
 # File Types
 --type-add=css=scss
