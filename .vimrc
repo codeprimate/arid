@@ -35,7 +35,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 au BufRead,BufNewFile *.json set filetype=json
 
 " Gist
-let g:gist_post_private = 0
+let g:gist_post_private = 1
 let g:gist_clip_command = 'pbcopy'
 
 " GPG integration
@@ -71,7 +71,7 @@ if has("gui_running")
   set guioptions-=T  "remove toolbar
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
-  set guifont=Sauce\ Code\ Powerline:h14
+  set guifont=Sauce\ Code\ Powerline:h12
 endif
 
 "" Airline
