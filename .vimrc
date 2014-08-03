@@ -17,6 +17,8 @@ set smartcase
 set wildmenu
 set wildmode=list:longest,list:full
 
+set hls
+
 " DISABLE FOLDS
 set nofoldenable
 
@@ -53,9 +55,12 @@ let mapleader=","
 map <C-T> :tabnew<CR>
 map <C-s-right> :tabnext<CR>
 map <C-s-left> :tabprev<CR>
+map <C-s-up> :bprev<CR>
+map <C-s-down> :bnext<CR>
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>A :Ack<space>
 map <Leader>l :TagbarToggle<CR>
+map <Leader>t :call TrimWhiteSpace()<CR>
 
 " Look and Feel
 set number
