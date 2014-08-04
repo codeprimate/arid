@@ -16,7 +16,6 @@ set showmatch
 set smartcase
 set wildmenu
 set wildmode=list:longest,list:full
-
 set hls
 
 " DISABLE FOLDS
@@ -53,8 +52,6 @@ map <Leader>r :RuboCop<CR>
 " Custom Keybindings
 let mapleader=","
 map <C-T> :tabnew<CR>
-map <C-s-right> :tabnext<CR>
-map <C-s-left> :tabprev<CR>
 map <C-s-up> :bprev<CR>
 map <C-s-down> :bnext<CR>
 map <Leader>n :NERDTreeToggle<CR>
