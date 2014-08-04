@@ -35,6 +35,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " Fix JSON filetype detection
 au BufRead,BufNewFile *.json set filetype=json
 
+" jQury Syntax detection
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
 " Gist
 let g:gist_post_private = 1
 let g:gist_clip_command = 'pbcopy'
