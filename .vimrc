@@ -63,8 +63,8 @@ map <Leader>t :call TrimWhiteSpace()<CR>
 set number
 set ruler
 set t_Co=256
-set background=dark
-colorscheme slate
+""set background=dark
+""colorscheme slate
 
 "" GVIM/mvim config
 if has("gui_running")
@@ -111,5 +111,3 @@ autocmd BufWinLeave * call clearmatches()
 function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
-
-"set list listchars=tab:»¯,trail:°,extends:»,precedes:«
