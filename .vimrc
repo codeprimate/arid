@@ -35,8 +35,11 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " Fix JSON filetype detection
 au BufRead,BufNewFile *.json set filetype=json
 
-" jQury Syntax detection
+" jQuery Syntax detection
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+" Make rakefiles Ruby
+au BufRead,BufNewFile *.rake set ft=ruby
 
 " Gist
 let g:gist_post_private = 1
@@ -66,8 +69,8 @@ map <Leader>t :call TrimWhiteSpace()<CR>
 set number
 set ruler
 set t_Co=256
-""set background=dark
-""colorscheme slate
+set background=dark
+colorscheme slate
 
 "" GVIM/mvim config
 if has("gui_running")
