@@ -6,7 +6,7 @@
   dst =!git diff --stat
 	fixmaster = !git config branch.master.remote origin && git config branch.master.merge refs/heads/master
   cl = !git log --format='format: * %s (%an: %ad) [%h]' --no-merges
-  lcd = !git log -n 1 --format='format: %ad' --no-merges 
+  lcd = !git log -n 1 --format='format: %ad' --no-merges
   hl = !echo "$( git log -n 1 --format='format:%ad' --date=local heroku/master ) - $(git log -n 1 --format='format:%ad' --date=local)" && git cl heroku/master..
   #brcommit = !git commit -m $(git branch 2>/dev/null | grep ^\* | sed -e s/^\*[[:space:]]// | cut -f 1,2 -d \-) && git commit -m
 [color]
@@ -16,7 +16,7 @@
 	status = auto
 [core]
 	editor = vim
-	excludesfile = /Users/pmorgan/.gitignore_global
+	excludesfile = /Users/pmorgan/.gitignore
 [user]
 	name = Patrick Morgan
 	email = patrick@patrick-morgan.net

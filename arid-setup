@@ -1,0 +1,43 @@
+#!/bin/bash
+
+ARID_HOME="~/.arid"
+
+ARID_FILE_ALIASES=".vimrc .ackrc .gemrc .gitignore .gitconfig .irbrc .pryrc .tmux.conf"
+ARID_DIRECTORY_ALIASES=".vim .config"
+
+for x in $(echo $ARID_FILE_ALIASES); do \
+  if [ -h ~/$x ]
+  then
+    echo "$x is already symlinked."
+    continue
+  fi
+
+  if [ -f ~/$x ]
+  then
+    echo -n " * Backing up $x..."
+    mv ~/$x ~/$x.old
+    echo "Done."
+    echo -n " * Symlinking ~/$x..."
+    ln -sf $ARID_HOME/$x ~/$x
+    echo "Done."
+  fi
+done
+
+
+for x in $(echo $ARID_DIRECTORY_ALIASES); do \
+  if [ -h ~/$x ]
+  then
+    echo "$x is already symlinked."
+    continue
+  fi
+
+  if [ -d ~/$x ]
+  then
+    echo -n "Backing up $x..."
+    mv ~/$x ~/$x.old
+    echo "Done."
+    echo -n " * Symlinking ~/$x..."
+    ln -sf $ARID_HOME/$x ~/$x
+    echo "Done."
+  fi
+done

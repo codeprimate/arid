@@ -5,3 +5,8 @@
 .netrwhist
 
 .viminfo
+.DS_Store
+*.sw?
+db/**/*.sql
+.starscope.db
+
