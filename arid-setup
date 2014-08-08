@@ -5,10 +5,12 @@ ARID_HOME="~/.arid"
 ARID_FILE_ALIASES=".vimrc .ackrc .gemrc .gitignore .gitconfig .irbrc .pryrc .tmux.conf"
 ARID_DIRECTORY_ALIASES=".vim .config"
 
+echo "== Installing Arid dotfiles"
+
 for x in $(echo $ARID_FILE_ALIASES); do \
   if [ -h ~/$x ]
   then
-    echo "$x is already symlinked."
+    echo " * $x is already symlinked."
     continue
   fi
 
@@ -27,7 +29,7 @@ done
 for x in $(echo $ARID_DIRECTORY_ALIASES); do \
   if [ -h ~/$x ]
   then
-    echo "$x is already symlinked."
+    echo " * $x is already symlinked."
     continue
   fi
 
@@ -41,3 +43,5 @@ for x in $(echo $ARID_DIRECTORY_ALIASES); do \
     echo "Done."
   fi
 done
+
+echo "== Done!"
