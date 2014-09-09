@@ -116,3 +116,9 @@ autocmd BufWinLeave * call clearmatches()
 function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
+
+" Github-flavored markdown (vim-flavored-markdown)
+augroup markdown
+  au!
+  au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
