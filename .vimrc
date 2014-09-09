@@ -34,13 +34,10 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
 set complete-=k complete+=k
 
-" Fix JSON filetype detection
+" Extra Filetypes
 au BufRead,BufNewFile *.json set filetype=json
-
-" jQuery Syntax detection
+au BufRead,BufNewFile *.html.eex set filetype=html
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-
-" Make rakefiles Ruby
 au BufRead,BufNewFile *.rake set ft=ruby
 
 " Gist
