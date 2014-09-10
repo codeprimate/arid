@@ -1,25 +1,24 @@
-# Ignores
 --ignore-dir=.git
---ignore-dir=coverage
+--ignore-dir=node_modules
+--ignore-file=is:tags
+--ignore-file=match:.sql
+--ignore-file=match:TAGS
+
+# Ruby/Rails stuff
+--ignore-dir=.bundle/
+--ignore-dir=.sass-cache/
 --ignore-dir=doc/app
 --ignore-dir=lib/converter
 --ignore-dir=log
---ignore-dir=node_modules
 --ignore-dir=public/assets
 --ignore-dir=public/javascripts/jquery
 --ignore-dir=public/javascripts/jquery-ui
 --ignore-dir=public/javascripts/jquery_plugins
 --ignore-dir=public/javascripts/jquery_plugins_modified
---ignore-dir=public/stylesheets/blueprint
 --ignore-dir=public/system
---ignore-dir=reports
 --ignore-dir=tmp
 --ignore-dir=vendor
---ignore-file=is:tags
---ignore-file=is:tags
---ignore-file=match:.sql
---ignore-file=match:TAGS
---nosql
+--ignore-dir=coverage
 
 # File Types
 --type-add=css=scss
@@ -30,3 +29,5 @@
 --type-set=jade=.jade
 --type-set=feature=.feature
 --type-set=json=.json
+
+--nosql
