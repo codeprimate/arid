@@ -12,7 +12,7 @@ alias r="bundle exec rake"
 
 alias st="git status"
 alias co="git checkout"
-#alias br="git branch"
+alias br="git branch"
 alias com="git commit"
 alias push="git push"
 alias add="git add"

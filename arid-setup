@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ARID_HOME="~/.arid"
+ARID_HOME="$HOME/.arid"
 
 ARID_FILE_ALIASES=".vimrc .ackrc .gemrc .gitignore .gitconfig .irbrc .pryrc .tmux.conf"
 ARID_DIRECTORY_ALIASES=".vim .config"
@@ -8,38 +8,38 @@ ARID_DIRECTORY_ALIASES=".vim .config"
 echo "== Installing Arid dotfiles"
 
 for x in $(echo $ARID_FILE_ALIASES); do \
-  if [ -h ~/$x ]
+  if [ -h $HOME/$x ]
   then
     echo " * $x is already symlinked."
     continue
   fi
 
-  if [ -f ~/$x ]
+  if [ -f $HOME/$x ]
   then
     echo -n " * Backing up $x..."
-    mv ~/$x ~/$x.old
+    mv $HOME/$x $HOME/$x.old
     echo "Done."
-    echo -n " * Symlinking ~/$x..."
-    ln -sf $ARID_HOME/$x ~/$x
+    echo -n " * Symlinking $HOME/$x..."
+    ln -sf $ARID_HOME/$x $HOME/$x
     echo "Done."
   fi
 done
 
 
 for x in $(echo $ARID_DIRECTORY_ALIASES); do \
-  if [ -h ~/$x ]
+  if [ -h $HOME/$x ]
   then
     echo " * $x is already symlinked."
     continue
   fi
 
-  if [ -d ~/$x ]
+  if [ -d $HOME/$x ]
   then
     echo -n "Backing up $x..."
-    mv ~/$x ~/$x.old
+    mv $HOME/$x $HOME/$x.old
     echo "Done."
-    echo -n " * Symlinking ~/$x..."
-    ln -sf $ARID_HOME/$x ~/$x
+    echo -n " * Symlinking $HOME/$x..."
+    ln -sf $ARID_HOME/$x $HOME/$x
     echo "Done."
   fi
 done
