@@ -19,10 +19,10 @@ for x in $(echo $ARID_FILE_ALIASES); do \
     echo -n " * Backing up $x..."
     mv $HOME/$x $HOME/$x.old
     echo "Done."
-    echo -n " * Symlinking $HOME/$x..."
-    ln -sf $ARID_HOME/$x $HOME/$x
-    echo "Done."
   fi
+  echo -n " * Symlinking $HOME/$x..."
+  ln -sf $ARID_HOME/$x $HOME/$x
+  echo "Done."
 done
 
 
@@ -38,10 +38,10 @@ for x in $(echo $ARID_DIRECTORY_ALIASES); do \
     echo -n "Backing up $x..."
     mv $HOME/$x $HOME/$x.old
     echo "Done."
-    echo -n " * Symlinking $HOME/$x..."
-    ln -sf $ARID_HOME/$x $HOME/$x
-    echo "Done."
   fi
+  echo -n " * Symlinking $HOME/$x..."
+  ln -sf $ARID_HOME/$x $HOME/$x
+  echo "Done."
 done
 
 echo "== Done!"
