@@ -1,6 +1,6 @@
 # ALIASES
-alias ls='ls -G'
-alias ll='ls -G -l'
+alias ls='ls -G --color'
+alias ll='ls -G -l --color'
 
 alias console='script/console'
 alias c='bundle exec pry -r config/environment.rb'
