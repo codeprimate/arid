@@ -31,8 +31,8 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
-set complete-=k complete+=k
+"set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
+"set complete-=k complete+=k
 
 " Extra Filetypes
 au BufRead,BufNewFile *.json set filetype=json
@@ -79,6 +79,8 @@ if has("gui_running")
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
   set guifont=Sauce\ Code\ Powerline:h12
+else
+  set mouse=a "enable mouse in console
 endif
 
 "" Airline
