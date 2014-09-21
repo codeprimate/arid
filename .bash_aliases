@@ -16,3 +16,5 @@ alias br="git branch"
 alias com="git commit"
 alias push="git push"
 alias add="git add"
+
+alias t="tmux -2"
