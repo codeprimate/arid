@@ -26,7 +26,6 @@ let g:ragtag_global_maps = 1
 let g:svndiff_autoupdate = 1
 
 " Auto-complete
-let g:SuperTabDefaultCompletionType = "context"
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -69,7 +68,7 @@ set number
 set ruler
 set t_Co=256
 set background=dark
-colorscheme slate
+colorscheme default
 
 "" GVIM/mvim config
 if has("gui_running")
@@ -80,8 +79,9 @@ if has("gui_running")
   set guioptions-=L  "remove left-hand scroll bar
   set guifont=Sauce\ Code\ Powerline:h12
 else
-  set mouse=a "enable mouse in console
+  set mouse=a
 endif
+
 
 "" Airline
 let g:airline#extensions#tabline#enabled = 1
