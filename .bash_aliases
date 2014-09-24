@@ -17,4 +17,4 @@ alias com="git commit"
 alias push="git push"
 alias add="git add"
 
-alias t="tmux -2"
+alias mx="tmux -2"
