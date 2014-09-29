@@ -34,6 +34,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 "set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
 "set complete-=k complete+=k
 
+
 " Extra Filetypes
 au BufRead,BufNewFile *.json set filetype=json
 au BufRead,BufNewFile *.html.eex set filetype=html
@@ -56,20 +57,30 @@ map <Leader>r :RuboCop<CR>
 
 " Custom Keybindings
 let mapleader=","
-map <C-T> :tabnew<CR>
-map <C-s-up> :bprev<CR>
-map <C-s-down> :bnext<CR>
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>A :Ack<space>
 map <Leader>l :TagbarToggle<CR>
 map <Leader>t :call TrimWhiteSpace()<CR>
+
+" tab navigation with vim keys
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap td  :tabclose<CR>
+" Alternatively use
+nnoremap tn :tabnew<CR>
+
+" Prevent ack.vim from bleeding into console
+" (source: https://github.com/mileszs/ack.vim/issues/18)
+set shellpipe=&>
 
 " Look and Feel
 set number
 set ruler
 set t_Co=256
 set background=dark
-colorscheme slate
 
 "" GVIM/mvim config
 if has("gui_running")

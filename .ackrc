@@ -1,10 +1,25 @@
---ignore-dir=.git
---ignore-dir=node_modules
---ignore-file=is:tags
+# File Types
+--type-add=css=scss
+--type-add=ruby=.haml,.rselm,.feature,.ru,.lock
+--type-set=coffeescript=.coffee
+--type-set=coffee=.coffee
+--type-set=coffee=.coffee
+--type-set=jade=.jade
+--type-set=feature=.feature
+--type-set=json=.json
+
+# Ignores
+--nosql
 --ignore-file=match:.sql
+
+--ignore-dir=.git
+
+--ignore-dir=node_modules
+
+--ignore-file=is:tags
 --ignore-file=match:TAGS
 
-# Ruby/Rails stuff
+## Ruby/Rails stuff
 --ignore-dir=.bundle/
 --ignore-dir=.sass-cache/
 --ignore-dir=doc/app
@@ -20,14 +35,3 @@
 --ignore-dir=vendor
 --ignore-dir=coverage
 
-# File Types
---type-add=css=scss
---type-add=ruby=.haml,.rselm,.feature,.ru,.lock
---type-set=coffeescript=.coffee
---type-set=coffee=.coffee
---type-set=coffee=.coffee
---type-set=jade=.jade
---type-set=feature=.feature
---type-set=json=.json
-
---nosql
