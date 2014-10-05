@@ -18,8 +18,18 @@ set wildmenu
 set wildmode=list:longest,list:full
 set hls
 
-" DISABLE FOLDS
-set nofoldenable
+" FOLDS
+"set nofoldenable
+set foldcolumn=2
+" Default to indent folding and allow manual folding
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=syntax
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+"" Toggle folds with <Space> if there is a fold at the cursor
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+"set foldlevel=2
 
 " Misc
 let g:ragtag_global_maps = 1
