@@ -29,7 +29,8 @@ augroup END
 "" Toggle folds with <Space> if there is a fold at the cursor
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-"set foldlevel=2
+set foldlevel=1
+autocmd FileType coffee,haml set foldmethod=indent
 
 " Misc
 let g:ragtag_global_maps = 1
