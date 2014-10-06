@@ -93,6 +93,8 @@ set ruler
 set t_Co=256
 set background=dark
 
+set mouse=a
+
 "" GVIM/mvim config
 if has("gui_running")
   colorscheme evening
@@ -101,8 +103,6 @@ if has("gui_running")
   set guioptions-=r  "remove right-hand scroll bar
   set guioptions-=L  "remove left-hand scroll bar
   set guifont=Sauce\ Code\ Powerline:h12
-else
-  set mouse=a "enable mouse in console
 endif
 
 "" Airline
