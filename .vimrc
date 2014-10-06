@@ -19,7 +19,7 @@ set wildmode=list:longest,list:full
 set hls
 
 " FOLDS
-"set nofoldenable
+set nofoldenable
 set foldcolumn=2
 " Default to indent folding and allow manual folding
 augroup vimrc
@@ -80,7 +80,6 @@ nnoremap tj  :tabprev<CR>
 nnoremap tl  :tablast<CR>
 nnoremap tt  :tabedit<Space>
 nnoremap td  :tabclose<CR>
-" Alternatively use
 nnoremap tn :tabnew<CR>
 
 " Prevent ack.vim from bleeding into console
@@ -92,7 +91,6 @@ set number
 set ruler
 set t_Co=256
 set background=dark
-
 set mouse=a
 
 "" GVIM/mvim config
