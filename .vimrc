@@ -8,6 +8,7 @@ set complete=.,w,b,u,t,i
 set cursorline
 set ignorecase
 set incsearch
+
 set laststatus=2
 set mat=5
 set nocompatible
@@ -29,7 +30,7 @@ augroup END
 "" Toggle folds with <Space> if there is a fold at the cursor
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-set foldlevel=1
+set foldlevel=2
 autocmd FileType coffee,haml set foldmethod=indent
 
 " Misc
@@ -37,13 +38,13 @@ let g:ragtag_global_maps = 1
 let g:svndiff_autoupdate = 1
 
 " Auto-complete
-let g:SuperTabDefaultCompletionType = "context"
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-"set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
-"set complete-=k complete+=k
+"let g:SuperTabDefaultCompletionType = "context"
+"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+"autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+"autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+"autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+""set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
+set complete-=k complete+=k
 
 
 " Extra Filetypes
@@ -93,16 +94,6 @@ set t_Co=256
 set background=dark
 set mouse=a
 
-"" GVIM/mvim config
-if has("gui_running")
-  colorscheme evening
-  highlight Pmenu ctermbg=238 gui=bold
-  set guioptions-=T  "remove toolbar
-  set guioptions-=r  "remove right-hand scroll bar
-  set guioptions-=L  "remove left-hand scroll bar
-  set guifont=Sauce\ Code\ Powerline:h12
-endif
-
 "" Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -144,3 +135,16 @@ augroup markdown
   au!
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
+
+"" GVIM/mvim config
+if has("gui_running")
+  colorscheme evening
+  highlight Pmenu ctermbg=238 gui=bold
+  set guioptions-=T  "remove toolbar
+  set guioptions-=r  "remove right-hand scroll bar
+  set guioptions-=L  "remove left-hand scroll bar
+  set guifont=Sauce\ Code\ Powerline:h12
+else
+  color codeschool
+endif
+
