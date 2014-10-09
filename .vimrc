@@ -4,7 +4,6 @@ call pathogen#runtime_append_all_bundles()
 
 set encoding=utf-8
 set backspace=indent,eol,start
-set complete=.,w,b,u,t,i
 set cursorline
 set ignorecase
 set incsearch
@@ -38,13 +37,14 @@ let g:ragtag_global_maps = 1
 let g:svndiff_autoupdate = 1
 
 " Auto-complete
-"let g:SuperTabDefaultCompletionType = "context"
-"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-"autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-"autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-"autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-""set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
 set complete-=k complete+=k
+set complete=.,w,b,u,t,i
 
 
 " Extra Filetypes
@@ -73,6 +73,7 @@ map <Leader>n :NERDTreeToggle<CR>
 map <Leader>A :Ack<space>
 map <Leader>l :TagbarToggle<CR>
 map <Leader>t :call TrimWhiteSpace()<CR>
+map <Leader>i :IndentGuidesToggle<CR>
 
 " tab navigation with vim keys
 nnoremap th  :tabfirst<CR>
@@ -87,11 +88,14 @@ nnoremap tn :tabnew<CR>
 " (source: https://github.com/mileszs/ack.vim/issues/18)
 set shellpipe=&>
 
+" Disable Background color erase
+set t_ut=
+
 " Look and Feel
 set number
 set ruler
 set t_Co=256
-set background=dark
+set background=light
 set mouse=a
 
 "" Airline
@@ -112,7 +116,7 @@ filetype indent on
 
 " IndentGuides
 let g:indent_guides_guide_size = 1
-autocmd FileType * IndentGuidesEnable
+"autocmd FileType * IndentGuidesEnable
 autocmd FileType calendar IndentGuidesDisable
 
 " Vimwiki
@@ -145,6 +149,6 @@ if has("gui_running")
   set guioptions-=L  "remove left-hand scroll bar
   set guifont=Sauce\ Code\ Powerline:h12
 else
-  color codeschool
+  colorscheme railscasts
 endif
 
