@@ -155,3 +155,6 @@ endif
 " Slime
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "5"}
+
+" NERDTree Tabs
+autocmd FileType * g:nerdtree_tabs_open_on_console_startup = 1
