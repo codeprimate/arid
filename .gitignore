@@ -10,3 +10,4 @@
 db/**/*.sql
 .starscope.db
 
+.lvimrc
