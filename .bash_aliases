@@ -1,6 +1,7 @@
 # ALIASES
 alias ls='ls -G --color'
 alias ll='ls -G -l --color'
+alias la='ls -G -l --color -a'
 
 alias console='script/console'
 alias c='bundle exec pry -r config/environment.rb'
@@ -17,4 +18,7 @@ alias com="git commit"
 alias push="git push"
 alias add="git add"
 
+# 256 color tmux
 alias mx="tmux -2"
+
+if [ -x "$(which ack-grep)" ]; then alias ack="ack-grep"; fi
