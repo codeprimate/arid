@@ -11,3 +11,4 @@ db/**/*.sql
 .starscope.db
 
 .lvimrc
+.rake_tasks
