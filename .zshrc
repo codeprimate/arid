@@ -80,3 +80,6 @@ export PATH="/home/codeprimate/bin:/opt/bin:/home/codeprimate/.rvm/gems/ruby-2.1
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ~/.arid/arid.env.zsh
+
+# Restrictive default permissions
+umask 0077
