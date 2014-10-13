@@ -21,6 +21,7 @@ set hls
 " FOLDS
 set nofoldenable
 set foldcolumn=2
+set foldlevel=2
 " Default to indent folding and allow manual folding
 augroup vimrc
   au BufReadPre * setlocal foldmethod=syntax
@@ -29,7 +30,6 @@ augroup END
 "" Toggle folds with <Space> if there is a fold at the cursor
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-set foldlevel=2
 autocmd FileType coffee,haml set foldmethod=indent
 
 " Misc
@@ -37,15 +37,15 @@ let g:ragtag_global_maps = 1
 let g:svndiff_autoupdate = 1
 
 " Auto-complete
+"autocmd FileType * AcpDisable
+set complete=.,w,b,t
+set completeopt=longest,preview
+set omnifunc=syntaxcomplete#Complete
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-"set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
-set complete-=k complete+=k
-set complete=.,w,b,u,t,i
-
 
 " Extra Filetypes
 au BufRead,BufNewFile *.json set filetype=json
