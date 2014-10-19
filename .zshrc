@@ -45,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rake-fast colorize zsh-syntax-highlighting history-substring-search)
+plugins=(git rake-fast colorize zsh-syntax-highlighting history-substring-search dirhistory)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -80,6 +80,11 @@ export PATH="/home/codeprimate/bin:/opt/bin:/home/codeprimate/.rvm/gems/ruby-2.1
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ~/.arid/arid.env.zsh
+source ~/.todo/todo_setup
 
 # Restrictive default permissions
 umask 0077
+
+# exenv
+export PATH="$HOME/.exenv/bin:$PATH"
+eval "$(exenv init -)"
