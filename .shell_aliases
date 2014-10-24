@@ -4,7 +4,7 @@ alias ll='ls -G -l --color'
 alias la='ls -G -l --color -a'
 
 alias console='script/console'
-alias c='bundle exec pry -r config/environment.rb'
+alias c='bundle exec pry -r ./config/environment.rb'
 alias server='script/server'
 alias log='bundle exec rake log:clear; tail -f log/development.log'
 alias start='RAILS_ENV=development foreman start'
@@ -26,3 +26,7 @@ if [ -x "$(which ack-grep)" ]; then alias ack="ack-grep"; fi
 if [ -x "$(which xdg-open)" ]; then alias open="xdg-open"; fi
 
 if [ -x "$(which xclip)" ]; then alias pbcopy="xclip -i -sel clipboard"; fi
+
+if [ -x "$(which ctags)" ]; then
+  alias rtags="find ./ -iname '*.rb' | xargs ctags"
+fi
