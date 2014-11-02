@@ -1,3 +1,5 @@
+# vim: set ft=zsh:
+
 # ALIASES
 alias ls='ls -G --color'
 alias ll='ls -G -l --color'
@@ -29,4 +31,10 @@ if [ -x "$(which xclip)" ]; then alias pbcopy="xclip -i -sel clipboard"; fi
 
 if [ -x "$(which ctags)" ]; then
   alias rtags="find ./ -iname '*.rb' | xargs ctags"
+fi
+
+
+if [ -d "$HOME/.exenv/" ]; then
+  export PATH="$HOME/.exenv/bin:$PATH"
+  eval "$(exenv init -)"
 fi

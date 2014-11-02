@@ -79,12 +79,8 @@ export PATH="/home/codeprimate/bin:/opt/bin:/home/codeprimate/.rvm/gems/ruby-2.1
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.arid/arid.env.zsh
-source ~/.todo/todo_setup
-
 # Restrictive default permissions
 umask 0077
 
-# exenv
-export PATH="$HOME/.exenv/bin:$PATH"
-eval "$(exenv init -)"
+source ~/.arid/arid.env.zsh
+source ~/.todo/todo_setup
