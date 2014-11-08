@@ -51,8 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/home/codeprimate/bin:/opt/bin:/home/codeprimate/.rvm/gems/ruby-2.1.3/bin:/home/codeprimate/.rvm/gems/ruby-2.1.3@global/bin:/home/codeprimate/.rvm/rubies/ruby-2.1.3/bin:/home/codeprimate/bin:/opt/bin:/home/codeprimate/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/codeprimate/.rvm/bin:/home/codeprimate/.rvm/bin:/home/codeprimate/.arid:/home/codeprimate/.rvm/bin:/home/codeprimate/.rvm/bin:/home/codeprimate/.arid:/home/codeprimate/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
