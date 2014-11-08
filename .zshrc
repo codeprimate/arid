@@ -82,4 +82,7 @@ export PATH="$PATH"
 umask 0077
 
 source ~/.arid/arid.env.zsh
-source ~/.todo/todo_setup
+
+if [ -e "/home/codeprimate/.todo/todo_setup" ]; then 
+  source ~/.todo/todo_setup
+fi
