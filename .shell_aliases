@@ -38,3 +38,7 @@ if [ -d "$HOME/.exenv/" ]; then
   export PATH="$HOME/.exenv/bin:$PATH"
   eval "$(exenv init -)"
 fi
+
+if [ -e "/opt/bin" ]; then
+  export PATH="$PATH:/opt/bin"
+fi
