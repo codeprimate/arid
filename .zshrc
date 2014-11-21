@@ -86,3 +86,5 @@ source ~/.arid/arid.env.zsh
 if [ -e "/home/codeprimate/.todo/todo_setup" ]; then 
   source ~/.todo/todo_setup
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -61,7 +61,7 @@ let g:gist_clip_command = 'pbcopy'
 " GPG integration
 au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
 au BufReadPost *.gpg :%!gpg -d 2>/dev/null
-au BufWritePre *.gpg :%!gpg -e -r 'pmorgan@peopleadmin.com' 2>/dev/null
+au BufWritePre *.gpg :%!gpg -e -r 'patrick@patrick-morgan.net' 2>/dev/null
 au BufWritePost *.gpg u
 
 " RuboCop Ruby linter leader binding

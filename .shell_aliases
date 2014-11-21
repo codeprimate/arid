@@ -1,9 +1,9 @@
 # vim: set ft=zsh:
 
 # ALIASES
-alias ls='ls -G --color'
-alias ll='ls -G -l --color'
-alias la='ls -G -l --color -a'
+alias ls='ls --color'
+alias ll='ls -l --color'
+alias la='ls -l --color -a'
 
 alias console='script/console'
 alias c='bundle exec pry -r ./config/environment.rb'
