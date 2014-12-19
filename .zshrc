@@ -11,7 +11,7 @@ ZSH_THEME="robbyrussell"
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -81,10 +81,10 @@ export PATH="$PATH"
 # Restrictive default permissions
 umask 0077
 
-source ~/.arid/arid.env.zsh
+source $HOME/.arid/arid.env.zsh
 
-if [ -e "/home/codeprimate/.todo/todo_setup" ]; then 
-  source ~/.todo/todo_setup
+if [ -e "$HOME/.todo/todo_setup" ]; then
+  source $HOME/.todo/todo_setup
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
