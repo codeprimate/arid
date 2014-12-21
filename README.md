@@ -7,13 +7,13 @@ Distributed under the BSD License.
 
 ## Instructions
 
-Add to your `~/.bashrc` or `~/.zshrc`:
+1. Clone to `~/.arid`
+1. Add to your `~/.bashrc` or `~/.zshrc`:
 
     source $HOME/.arid/arid.env.zsh
 
-To install symlinks:
+1. To install symlinks:
 
-    source $HOME/.arid/arid.env.zsh
     $ARID_HOME/arid-setup
 
 ### See LICENSE for additional information.  Feel free to use, modify, and redistribute.
