@@ -8,6 +8,12 @@ Distributed under the BSD License.
 ## Instructions
 
 Add to your `~/.bashrc` or `~/.zshrc`:
+
     source $HOME/.arid/arid.env.zsh
+
+To install symlinks:
+
+    source $HOME/.arid/arid.env.zsh
+    $ARID_HOME/arid-setup
 
 ### See LICENSE for additional information.  Feel free to use, modify, and redistribute.
