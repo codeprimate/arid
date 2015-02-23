@@ -1,9 +1,9 @@
 # vim: set ft=zsh:
 
 # ALIASES
-alias ls='ls --color'
-alias ll='ls -l --color'
-alias la='ls -l --color -a'
+alias ls='ls -G'
+alias ll='ls -lG '
+alias la='ls -lG -a'
 
 alias console='script/console'
 alias c='bundle exec pry -r ./config/environment.rb'
@@ -47,3 +47,5 @@ fi
 if [ -d "$HOME/bin" ]; then
   export PATH="$PATH:$HOME/bin/"
 fi
+
+if [ -x "$(which openssl)" ]; then alias pwgen="openssl rand -hex 32"; fi

@@ -38,7 +38,7 @@ let g:svndiff_autoupdate = 1
 
 " Auto-complete
 "autocmd FileType * AcpDisable
-set complete=.,w,b,t
+set complete=.,b,t
 "set complete=.,w,b,u,t,i
 set completeopt=longest,preview
 set omnifunc=syntaxcomplete#Complete
