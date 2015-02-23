@@ -90,3 +90,9 @@ fi
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export MINECRAFT_HOME=~/Documents/Minecraft/game
+
+export ARCHFLAGS="-arch x86_64"
+
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/help
