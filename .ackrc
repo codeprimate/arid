@@ -11,6 +11,7 @@
 # Ignores
 --nosql
 --ignore-file=match:.sql
+--ignore-file=match:.beam
 
 --ignore-dir=.git
 
