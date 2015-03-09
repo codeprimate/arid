@@ -37,7 +37,7 @@ let g:ragtag_global_maps = 1
 let g:svndiff_autoupdate = 1
 
 " Auto-complete
-"autocmd FileType * AcpDisable
+autocmd FileType * AcpDisable
 set complete=.,b,t
 "set complete=.,w,b,u,t,i
 set completeopt=longest,preview
