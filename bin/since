@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require 'date'
+
+
+begin
+  input = ARGV[0]
+  tz = `date | awk '{print $5}'`.chomp
+  start_time = DateTime.parse(input + " #{tz}").to_time
+  #puts "=> Time since: #{start_time}"
+
+  delta = ( DateTime.now.to_time - start_time )
+  hours = ( delta / 3600.0 ).floor
+  remainder = delta - hours*3600.0
+  minutes = ( remainder/60.0 ).floor
+  remainder = remainder - minutes * 60.0
+  seconds = remainder.to_i
+
+  #puts "%d hours %d minutes %d seconds" % [hours, minutes, seconds]
+  puts "%0.2d:%0.2d:%0.2d" % [hours, minutes, seconds]
+rescue
+  puts "Usage: #{$0} 8:12am"
+end
