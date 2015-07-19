@@ -24,13 +24,17 @@ alias stake="git add -A; git commit -m 'stake'"
 # 256 color tmux
 alias mx="tmux -2"
 
-if [ -x "$(which ack-grep)" ]; then alias ack="ack-grep"; fi
+#if [ -x "$(which ack-grep)" ]; then alias ack="ack-grep"; fi
+if [ command -v ack-grep &> /dev/null ]; then alias ack="ack-grep"; fi
 
-if [ -x "$(which xdg-open)" ]; then alias open="xdg-open"; fi
+#if [ -x "$(which xdg-open)" ]; then alias open="xdg-open"; fi
+if [ command -v xdg-open &> /dev/null ]; then alias open="xdg-open"; fi
 
-if [ -x "$(which xclip)" ]; then alias pbcopy="xclip -i -sel clipboard"; fi
+#if [ -x "$(which xclip)" ]; then alias pbcopy="xclip -i -sel clipboard"; fi
+if [ command -v xclip &> /dev/null ]; then alias pbcopy="xclip -i -sel clipboard"; fi
 
-if [ -x "$(which ctags)" ]; then
+#if [ -x "$(which ctags)" ]; then
+if [ command -v ctags &> /dev/null ]; then
   alias rtags="find ./ -iname '*.rb' | xargs ctags"
 fi
 
