@@ -58,3 +58,17 @@ alias glist='for ref in $(git for-each-ref --sort=-committerdate --format="%(ref
 
 alias prod_cl='git cl $(git tag | grep prod- | sort | tail -n 1).. --merges | cat'
 alias staging_cl='git cl $(git tag | grep staging- | sort | tail -n 1).. --merges | cat'
+
+## Docker Functions
+# Switch docker pointer to another host (dmenv my_remote_host)
+dmenv () {
+   eval "$(docker-machine env $1)"
+ }
+
+# Execute shell in Docker container
+dshell () {
+  docker exec -ti $1 /bin/bash
+}
+
+# Load 'default' docker machine by default
+dmenv default
