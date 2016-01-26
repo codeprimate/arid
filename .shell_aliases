@@ -2,14 +2,15 @@
 
 # ALIASES
 alias ls='ls -G'
-alias ll='ls -lG '
+alias ll='ls -lGh'
 alias la='ls -lG -a'
 
 alias console='script/console'
 alias c='bundle exec pry -r ./config/environment.rb'
 alias server='script/server'
 alias log='bundle exec rake log:clear; tail -f log/development.log'
-alias start='RAILS_ENV=development foreman start'
+alias log2='log | grep -E "(Started|Processing|Parameters|Completed)"'
+alias start='RAILS_ENV=development bundle exec foreman start'
 alias b="bundle exec"
 alias r="bundle exec rake"
 
