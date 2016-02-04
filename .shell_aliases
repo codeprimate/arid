@@ -57,8 +57,8 @@ if [ -x "$(which openssl)" ]; then alias pwgen="openssl rand -hex 32"; fi
 
 alias glist='for ref in $(git for-each-ref --sort=-committerdate --format="%(refname)" refs/heads/ refs/remotes ); do git log -n1 $ref --pretty=format:"%Cgreen%cr%Creset %C(yellow)%d%Creset %C(bold blue)<%an>%Creset%n" | cat ; done | awk '"'! a["'$0'"]++'"
 
-alias prod_cl='git cl $(git tag | grep prod- | sort | tail -n 1).. --merges | cat'
-alias staging_cl='git cl $(git tag | grep staging- | sort | tail -n 1).. --merges | cat'
+alias prod_cl='git cl $(git tag | grep prod- | sort | tail -n 1).. --merges | cat | sort'
+alias staging_cl='git cl $(git tag | grep staging- | sort | tail -n 1).. --merges | cat | sort'
 
 ## Docker Functions
 if [ -x "$(which docker-machine)" ]; then
@@ -75,3 +75,5 @@ if [ -x "$(which docker-machine)" ]; then
 # Load 'default' docker machine by default
   dmenv default
 fi
+
+export SIMULATOR_PATH=$HOME/Library/Developer/CoreSimulator/Devices
