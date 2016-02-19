@@ -1,12 +1,10 @@
-# From https://raw.githubusercontent.com/pjg/dotfiles/master/.pryrc
-#
-
 # Load plugins (only those I whitelist)
 Pry.config.should_load_plugins = false
-Pry.plugins["doc"].activate! # gem install pry-doc
-Pry.plugins["coolline"].activate! # gem install pry-coolline
-Pry.plugins["stack_explorer"].activate! # gem install pry-stack_explorer
-Pry.plugins["state"].activate! # gem install pry-state
+Pry.plugins["doc"].activate!
+Pry.plugins["coolline"].activate!
+Pry.plugins["state"].activate!
+#Pry.plugins["byebug"].activate!
+Pry.plugins["stack_explorer"].activate!
 
 # alias 'q' for 'exit'
 Pry.config.commands.alias_command "q", "exit-all"
@@ -17,22 +15,25 @@ begin
   require 'awesome_print/ext/active_record'
   require 'awesome_print/ext/active_support'
   AwesomePrint.pry!
+  Pry.config.print = proc { |output, value| output.puts "=> #{ap value}" }
+  puts "*** Using awesome_print to inspect return values in pry (from .pryrc)"
 rescue LoadError => err
+  puts "=> Unable to load awesome_print"
 end
 
 # Load 'hirb'
-begin
-  require 'hirb'
+#begin
+  #require 'hirb'
 
-  Hirb.enable
+  #Hirb.enable
 
-  pry_print = Pry.config.print
+  #pry_print = Pry.config.print
 
-  Pry.config.print = proc do |*args|
-    Hirb::View.view_or_page_output(args[1]) || pry_print.call(*args)
-  end
-rescue LoadError => err
-end
+  #Pry.config.print = proc do |*args|
+    #Hirb::View.view_or_page_output(args[1]) || pry_print.call(*args)
+  #end
+#rescue LoadError => err
+#end
 
 # Launch Pry with access to the entire Rails stack
 rails = File.join(Dir.getwd, 'config', 'environment.rb')
@@ -143,3 +144,35 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
     end
   end
 end
+
+## codeprimate's .pryrc
+
+### Load Rails helpers
+#rails = File.join Dir.getwd, 'config', 'environment.rb'
+#if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
+  #require rails
+
+  #if Rails.version[0..0] == "2"
+    #require 'console_app'
+    #require 'console_with_helpers'
+    #puts "*** Loaded Rails v2 Environment (from .pryrc)"
+  #elsif Rails.version[0..0] == "3"
+    #require 'rails/console/app'
+    #require 'rails/console/helpers'
+    #puts "*** Loaded Rails v3 Environment (from .pryrc)"
+  #else
+    #warn "[WARN] cannot load Rails console commands (Not on Rails2 or Rails3?)"
+  #end
+#end
+### End Load Rails Helpers
+
+
+### Load AwesomePrint
+#begin
+  #require 'awesome_print'
+  #Pry.config.print = proc { |output, value| output.puts "=> #{ap value}" }
+  #puts "*** Using awesome_print to inspect return values in pry (from .pryrc)"
+#rescue
+  #puts "=> Unable to load awesome_print"
+#end
+### End Load AwesomePrint

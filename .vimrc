@@ -68,7 +68,7 @@ au BufWritePost *.gpg u
 let g:vimrubocop_keymap = 0
 map <Leader>r :RuboCop<CR>
 
-" Custom Keybindings
+" Custom Leader Keybindings
 let mapleader=","
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>A :Ack<space>
@@ -76,13 +76,18 @@ map <Leader>l :TagbarToggle<CR>
 map <Leader>t :call TrimWhiteSpace()<CR>
 map <Leader>i :IndentGuidesToggle<CR>
 
+" Mac-Specific keybindings for system clipboard
+set clipboard=unnamed
+map <Leader>Y :w !pbcopy<CR>
+map <Leader>P :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+
 " tab navigation with vim keys
-nnoremap th  :tabfirst<CR>
-nnoremap tk  :tabnext<CR>
-nnoremap tj  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-nnoremap td  :tabclose<CR>
+nnoremap th :tabfirst<CR>
+nnoremap tk :tabnext<CR>
+nnoremap tj :tabprev<CR>
+nnoremap tl :tablast<CR>
+nnoremap tt :tabedit<Space>
+nnoremap td :tabclose<CR>
 nnoremap tn :tabnew<CR>
 
 " Prevent ack.vim from bleeding into console
