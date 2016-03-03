@@ -47,6 +47,7 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+let ruby_no_expensive=1
 
 " Extra Filetypes
 au BufRead,BufNewFile *.json set filetype=json
@@ -98,6 +99,7 @@ set shellpipe=&>
 set t_ut=
 
 " Look and Feel
+set norelativenumber
 set number
 set ruler
 set t_Co=256
