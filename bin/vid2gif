@@ -1,0 +1,8 @@
+#!/bin/bash
+# Requires: ffmpeg, ImageMagick convert, gifsicle
+
+ffmpeg -i $1 $1-step1.gif && \
+convert $1-step1.gif  -verbose -coalesce -layers OptimizeFrame $1-step2.gif && \
+gifsicle -O2 $1-step2.gif -o $1.gif && \
+
+rm $1-step1.gif $1-step2.gif 

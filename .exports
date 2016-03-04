@@ -2,7 +2,7 @@
 
 export EDITOR=vim
 
-export LESS="-XF"
+export LESS="-XFR"
 export SIMULATOR_PATH=$HOME/Library/Developer/CoreSimulator/Devices
 
 if [ -d "$HOME/.exenv/" ]; then

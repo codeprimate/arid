@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Example install configuration for OSX:
+#   $ brew reinstall ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-speex --with-theora --with-tools
+
+ffmpeg -i $1 -c:v libvpx -b:v 1M -c:a libvorbis $1.webm
+
