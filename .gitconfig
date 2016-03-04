@@ -1,31 +1,56 @@
 [alias]
-	st = status
-	ci = commit
-	co = checkout
-	br = branch
+  st = status
+  ci = commit
+  co = checkout
+  br = branch
+  p = push
+  l = log
+  d = diff
   dst =!git diff --stat
-	fixmaster = !git config branch.master.remote origin && git config branch.master.merge refs/heads/master
-  cl = !git log --format='format: * %s (%an: %ad) [%h]' --no-merges
+  fixmaster = !git config branch.master.remote origin && git config branch.master.merge refs/heads/master
+  cl = !git log --format='format: * %s (%an: %ad) [%h]'
   lcd = !git log -n 1 --format='format: %ad' --no-merges
   hl = !echo "$( git log -n 1 --format='format:%ad' --date=local heroku/master ) - $(git log -n 1 --format='format:%ad' --date=local)" && git cl heroku/master..
   #brcommit = !git commit -m $(git branch 2>/dev/null | grep ^\* | sed -e s/^\*[[:space:]]// | cut -f 1,2 -d \-) && git commit -m
+  this = !git cl -n 1 | cat
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
-	ui = true
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = true
 [core]
-	editor = vim
-	excludesfile = /home/codeprimate/.gitignore
+  editor = vim
+  excludesfile = /home/codeprimate/.gitignore
 [user]
-	name = Patrick Morgan
-	email = patrick@patrick-morgan.net
+  name = Patrick Morgan
+  email = patrick@patrick-morgan.net
 [github]
-	user = codeprimate
+  user = codeprimate
 [branch]
-	autosetupmerge = true
+  autosetupmerge = true
 [push]
-	default = upstream
+  default = upstream
 [grep]
   patternType = perl
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustexitcode = true
+[merge]
+  tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+[mergetool]
+  prompt = false
+[diff]
+  tool = Kaleidoscope
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+  log = less --tabs=1,5 -RFX
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
