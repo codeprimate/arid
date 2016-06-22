@@ -47,6 +47,17 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
   elsif Rails.version[0..0].in?(['3', '4'])
     require 'rails/console/app'
     require 'rails/console/helpers'
+  elsif Rails.version[0..0].in?(['5'])
+    if defined?(Rails::ConsoleMethods)
+      include Rails::ConsoleMethods
+    else
+      def reload!(print=true)
+        puts "Reloading..." if print
+        ActionDispatch::Reloader.cleanup!
+        ActionDispatch::Reloader.prepare!
+        true
+      end
+    end
   else
     warn "[WARN] cannot load Rails console commands (Not on Rails2, Rails3 or Rails4?)"
   end
@@ -83,7 +94,7 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
     end
 
     # automatically call `reload` every time a new command is typed
-    Pry.hooks.add_hook(:before_eval, :reload_everything) { reload!(false) }
+    #Pry.hooks.add_hook(:before_eval, :reload_everything) { reload!(false) }
   end
 
   # sql for arbitrary SQL commands through the AR

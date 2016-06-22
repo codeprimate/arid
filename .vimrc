@@ -79,7 +79,7 @@ map <Leader>i :IndentGuidesToggle<CR>
 
 " Mac-Specific keybindings for system clipboard
 set clipboard=unnamed
-map <Leader>Y :w !pbcopy<CR>
+map <Leader>Y :w !pbcopy<CR><CR>
 map <Leader>P :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 
 " tab navigation with vim keys
@@ -99,7 +99,7 @@ set shellpipe=&>
 set t_ut=
 
 " Look and Feel
-set norelativenumber
+"set norelativenumber
 set number
 set ruler
 set t_Co=256
