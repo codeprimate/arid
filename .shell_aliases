@@ -22,8 +22,11 @@ alias push="git push"
 alias add="git add"
 alias stake="git add -A; git commit -m 'stake'"
 
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com."
+
 # 256 color tmux
 alias mx="tmux -2"
+alias mux="tmuxinator"
 
 #if [ -x "$(which ack-grep)" ]; then alias ack="ack-grep"; fi
 if [ command -v ack-grep &> /dev/null ]; then alias ack="ack-grep"; fi
@@ -39,8 +42,6 @@ if [ command -v ctags &> /dev/null ]; then
   alias rtags="find ./ -iname '*.rb' | xargs ctags"
 fi
 
-
-
 #if [ -x "$(which openssl)" ]; then alias pwgen="openssl rand -hex 32"; fi
 
 alias glist='for ref in $(git for-each-ref --sort=-committerdate --format="%(refname)" refs/heads/ refs/remotes ); do git log -n1 $ref --pretty=format:"%Cgreen%cr%Creset %C(yellow)%d%Creset %C(bold blue)<%an>%Creset%n" | cat ; done | awk '"'! a["'$0'"]++'"
@@ -48,19 +49,19 @@ alias glist='for ref in $(git for-each-ref --sort=-committerdate --format="%(ref
 alias prod_cl='git cl $(git tag | grep prod- | sort | tail -n 1).. --merges | cat | sort'
 alias staging_cl='git cl $(git tag | grep staging- | sort | tail -n 1).. --merges | cat | sort'
 
-## Docker Functions
-if [ -x "$(which docker-machine)" ]; then
-# Switch docker pointer to another host (dmenv my_remote_host)
-  dmenv () {
-     eval "$(docker-machine env $1)"
-   }
+### Docker Functions
+#if [ -x "$(which docker-machine)" ]; then
+## Switch docker pointer to another host (dmenv my_remote_host)
+dmenv () {
+   eval "$(docker-machine env $1)"
+ }
 
-# Execute shell in Docker container
-  dshell () {
-    docker exec -ti $1 /bin/bash
-  }
+## Execute shell in Docker container
+dshell () {
+  docker exec -ti $1 /bin/bash
+}
 
-# Load 'default' docker machine by default
-  dmenv default
-fi
+## Load 'default' docker machine by default
+  #dmenv default
+#fi
 
