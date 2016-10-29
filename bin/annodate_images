@@ -1,0 +1,14 @@
+#!/bin/bash 
+
+[ ! -d out ] && mkdir out
+
+for img in "$@"; do \
+  img_width="$(identify -format %w $img)"; \
+  img_height="$(identify -format %h $img)"; \
+  label_height=$(bc -l <<< "$img_height/40"); \
+  img_date=$(stat -l -t "%F" $img | awk '{print $6}'); \
+  convert -background '#0008' -fill white -gravity center -size ${img_width}x$label_height \
+    caption:"$img_date" \
+    -pointsize $label_height \
+    "$img" +swap -gravity south -composite  "out/$img"; \
+done
