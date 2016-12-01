@@ -17,6 +17,7 @@ set smartcase
 set wildmenu
 set wildmode=list:longest,list:full
 set hls
+set modelines=5
 
 " FOLDS
 set nofoldenable
