@@ -47,8 +47,6 @@
 [diff]
   tool = Kaleidoscope
 [pager]
-  diff = diff-so-fancy | less --tabs=1,5 -RFX
-  show = diff-so-fancy | less --tabs=1,5 -RFX
   log = less --tabs=1,5 -RFX
 [filter "lfs"]
   clean = git-lfs clean %f

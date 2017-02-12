@@ -93,6 +93,9 @@ export MINECRAFT_HOME=~/Documents/Minecraft/game
 
 export ARCHFLAGS="-arch x86_64"
 
-unalias run-help
+#unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
+
+export NVM_DIR="/home/codeprimate/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

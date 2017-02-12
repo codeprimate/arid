@@ -106,6 +106,7 @@ set ruler
 set t_Co=256
 set background=light
 set mouse=a
+set ttymouse=xterm2
 
 "" Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -172,4 +173,6 @@ nmap <Leader>sv     <Plug>SlimeConfig
 " NERDTree Tabs
 let g:nerdtree_tabs_open_on_console_startup = 1
 
-
+" JSX syntax highlighting
+" Enable in all .js files
+let g:jsx_ext_required = 0
