@@ -12,7 +12,8 @@
   lcd = !git log -n 1 --format='format: %ad' --no-merges
   hl = !echo "$( git log -n 1 --format='format:%ad' --date=local heroku/master ) - $(git log -n 1 --format='format:%ad' --date=local)" && git cl heroku/master..
   #brcommit = !git commit -m $(git branch 2>/dev/null | grep ^\* | sed -e s/^\*[[:space:]]// | cut -f 1,2 -d \-) && git commit -m
-  this = !git cl -n 1 | cat
+  this = !git cl -n 1
+  last = !git log -n 1 | head -n 1 | awk '{print $2}'
 [color]
   branch = auto
   diff = auto

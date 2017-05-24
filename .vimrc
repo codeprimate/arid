@@ -39,8 +39,8 @@ let g:svndiff_autoupdate = 1
 
 " Auto-complete
 autocmd FileType * AcpDisable
-set complete=.,b,t
-"set complete=.,w,b,u,t,i
+"set complete=.,b,t
+set complete=.,w,b,u,t,i
 set completeopt=longest,preview
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
@@ -172,4 +172,16 @@ nmap <Leader>sv     <Plug>SlimeConfig
 " NERDTree Tabs
 let g:nerdtree_tabs_open_on_console_startup = 1
 
+let g:jsx_ext_required = 0
 
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_enable_signs = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*

@@ -115,9 +115,3 @@ export PS1='\[\033[00;32m\]\u\[\033[01m\]@\[\033[00;36m\]\h\[\033[01m\]:\[\033[0
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
-PATH="script/:$HOME/opt/bin:$PATH"
-PATH="$HOME/opt/jdk/bin:$PATH"
-PATH="$HOME/opt/android/tools:$PATH"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

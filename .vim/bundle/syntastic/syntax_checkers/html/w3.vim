@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_html_w3_checker")
+if exists('g:loaded_syntastic_html_w3_checker')
     finish
 endif
 let g:loaded_syntastic_html_w3_checker = 1
@@ -23,8 +23,9 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_html_w3_GetLocList() dict
-    let makeprg = self.getExecEscaped() . ' -q -s -F output=json ' .
-        \ '-F uploaded_file=@' . syntastic#util#shexpand('%:p') . '\;type=text/html ' .
+    let buf = bufnr('')
+    let makeprg = self.getExecEscaped() . ' -q -L -s -F output=json ' .
+        \ '-F uploaded_file=@' . syntastic#util#shescape(fnamemodify(bufname(buf), ':p')) . '\;type=text/html ' .
         \ g:syntastic_html_w3_api
 
     let errorformat =
@@ -41,7 +42,7 @@ function! SyntaxCheckers_html_w3_GetLocList() dict
     let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'defaults': {'bufnr': bufnr("")},
+        \ 'defaults': {'bufnr': bufnr('')},
         \ 'returns': [0] })
 
     for e in loclist
@@ -59,4 +60,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

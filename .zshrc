@@ -87,12 +87,6 @@ if [ -e "$HOME/.todo/todo_setup" ]; then
   source $HOME/.todo/todo_setup
 fi
 
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-
-export MINECRAFT_HOME=~/Documents/Minecraft/game
-
-export ARCHFLAGS="-arch x86_64"
-
 unalias run-help
 autoload run-help
 HELPDIR=/usr/local/share/zsh/help
