@@ -22,7 +22,7 @@
   ui = true
 [core]
   editor = vim
-  excludesfile = /home/codeprimate/.gitignore
+	excludesfile = /Users/codeprimate/.gitignore_global
 [user]
   name = Patrick Morgan
   email = patrick@patrick-morgan.net

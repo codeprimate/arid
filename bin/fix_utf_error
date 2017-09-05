@@ -1,0 +1,3 @@
+#!/bin/bash 
+
+iconv -f LATIN1 -t utf-8 "$1" > "$2"

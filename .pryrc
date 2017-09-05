@@ -34,6 +34,7 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
     require 'rails/console/app'
     require 'rails/console/helpers'
   elsif Rails.version[0..0].in?(['5'])
+    require 'rails/console/app'
     if defined?(Rails::ConsoleMethods)
       include Rails::ConsoleMethods
     else
