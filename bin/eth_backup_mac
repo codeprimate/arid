@@ -1,0 +1,7 @@
+#!/bin/bash 
+
+eth_paths="~/Library/Ethereum/keystore ~/Library/Ethereum/rinkeby/keystore"
+backup=./etherium-backup-$(date "+%Y%m%d%H%M").tzg.gpg
+echo " * Backing up $eth_paths to $backup"
+tar czf - ~/Library/Ethereum/keystore ~/Library/Ethereum/rinkeby/keystore | gpg -co $backup
+echo "Done"
