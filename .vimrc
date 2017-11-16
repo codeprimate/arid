@@ -185,3 +185,9 @@ let g:syntastic_check_on_wq = 0
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+" Set Executable for Ack
+if executable('ag')
+  "let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
