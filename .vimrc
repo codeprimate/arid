@@ -191,3 +191,6 @@ if executable('ag')
   "let g:ackprg = 'ag --vimgrep'
   let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
+
+set ttymouse=xterm2
+set mouse=a
