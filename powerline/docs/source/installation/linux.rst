@@ -1,101 +1,110 @@
-:tocdepth: 2
-
-.. _installation-linux:
-
 *********************
 Installation on Linux
 *********************
 
-The following distribution-specific packages are officially supported, and 
-they provide an easy way of installing and upgrading Powerline. The packages 
-will automatically do most of the configuration for you, but you should 
-still skim through this guide so you know how the plugin works.
+The following distribution-specific packages are officially supported, and they 
+provide an easy way of installing and upgrading Powerline. The packages will 
+automatically do most of the configuration.
 
 * `Arch Linux (AUR), Python 2 version <https://aur.archlinux.org/packages/python2-powerline-git/>`_
 * `Arch Linux (AUR), Python 3 version <https://aur.archlinux.org/packages/python-powerline-git/>`_
 * Gentoo Live ebuild in `raiagent <https://github.com/leycec/raiagent>`_ overlay
+* Powerline package is available for Debian starting from Wheezy (via `backports 
+  <https://packages.debian.org/wheezy-backports/powerline>`_). Use `search 
+  <https://packages.debian.org/search?keywords=powerline&searchon=names&suite=all&section=all>`_ 
+  to get more information.
 
-If you're running a distribution without an official package you'll have to 
-follow the installation guide below:
+If used distribution does not have an official package installation guide below 
+should be followed:
 
-Plugin installation
-===================
+1. Install Python 3.2+, Python 2.6+ or PyPy and ``pip`` with ``setuptools``. 
+   This step is distribution-specific, so no commands provided.
+2. Install Powerline using one of the following commands:
 
-1. Install Python 3.2+ or Python 2.6+.
-2. Install Powerline using the following command::
+   .. code-block:: sh
 
-       pip install --user git+git://github.com/Lokaltog/powerline
+      pip install --user powerline-status
 
-.. note:: You need to use the GitHub URI when installing Powerline! This 
-   project is currently unavailable on the PyPI due to a naming conflict 
-   with an unrelated project.
+   will get the latest release version and
 
-Font installation
-=================
+   .. code-block:: sh
 
-Powerline provides two ways of installing the required fonts on Linux. The 
-recommended method is using ``fontconfig`` if your terminal emulator 
-supports it. See the :ref:`term-feature-support-matrix` for details about 
-what features your terminal emulator supports.
+      pip install --user git+git://github.com/powerline/powerline
+
+   will get the latest development version.
+
+   .. note:: Due to the naming conflict with an unrelated project powerline is
+      named ``powerline-status`` in PyPI.
+
+   .. note::
+      Powerline developers should be aware that``pip install --editable`` does 
+      not currently fully work. Installation performed this way are missing 
+      ``powerline`` executable that needs to be symlinked. It will be located in 
+      ``scripts/powerline``.
+
+Fonts installation
+==================
 
 Fontconfig
 ----------
 
-1. Download the `latest version of PowerlineSymbols 
-   <https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf>`_  
-   and the `latest version of the fontconfig file 
-   <https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf>`_.
-2. Move :file:`PowerlineSymbols.otf` to :file:`~/.fonts/` (or another X font 
-   directory).
-3. Run ``fc-cache -vf ~/.fonts`` to update your font cache.
-4. Move :file:`10-powerline-symbols.conf` to either :file:`~/.fonts.conf.d/` 
-   or :file:`~/.config/fontconfig/conf.d/`, depending on your fontconfig 
-   version.
-5. If you don't see the arrow symbols, please close all instances of your 
-   terminal emulator or gvim. You may also have to restart X for the changes 
-   to take effect. If you *still* don't see the arrow symbols, please submit 
-   an issue on GitHub.
+This method only works on Linux. It’s the second recommended method if terminal 
+emulator supports it as patching fonts is not needed, and it generally works 
+with any coding font.
 
-Patched font
-------------
+#. Download the latest version of the symbol font and fontconfig file::
 
-1. Download the font of your choice from `powerline-fonts`_. If you can't 
-   find your preferred font in the `powerline-fonts`_ repo, you'll have to 
-   patch your own font instead. See :ref:`font-patching` for instructions.
-2. Move your patched font to :file:`~/.fonts/` (or another X font 
-   directory).
-3. Run ``fc-cache -vf ~/.fonts`` to update your font cache.
-4. Update Gvim or your terminal emulator to use the patched font. (the 
-   correct font usually ends with *for Powerline*).
-5. If you don't see the arrow symbols, please close all instances of your 
-   terminal emulator or gvim. You may also have to restart X for the changes 
-   to take effect. If you *still* don't see the arrow symbols, please submit 
-   an issue on GitHub.
+      wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+      wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 
-.. _powerline-fonts: https://github.com/Lokaltog/powerline-fonts
+#. Move the symbol font to a valid X font path. Valid font paths can be 
+   listed with ``xset q``::
 
-Troubleshooting
-===============
+      mv PowerlineSymbols.otf ~/.local/share/fonts/
 
-.. contents::
-   :local:
+#. Update font cache for the path the font was moved to (root priveleges may be 
+   needed to update cache for the system-wide paths)::
 
-I can't see any fancy symbols, what's wrong?
---------------------------------------------
+      fc-cache -vf ~/.local/share/fonts/
 
-* Make sure that you've configured gvim or your terminal emulator to use 
-  a patched font (see :ref:`font-patching`).
-* You need to set your ``LANG`` and ``LC_*`` environment variables to 
-  a UTF-8 locale (e.g. ``LANG=en_US.utf8``). Consult your Linux distro's 
-  documentation for information about setting these variables correctly.
-* Make sure that vim is compiled with the ``--with-features=big`` flag.
-* If you're using rxvt-unicode, make sure that it's compiled with the 
-  ``--enable-unicode3`` flag.
+#. Install the fontconfig file. For newer versions of fontconfig the config 
+   path is ``~/.config/fontconfig/conf.d/``, for older versions it’s  
+   ``~/.fonts.conf.d/``::
 
-The fancy symbols look a bit blurry or "off"!
----------------------------------------------
+      mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 
-* Make sure that you have patched all variants of your font (i.e. both the 
-  regular and the bold font files).
+If custom symbols still cannot be seen then try closing all instances of the 
+terminal emulator. Restarting X may be needed for the changes to take effect.
 
-.. include:: troubleshooting-common.rst
+If custom symbols *still* can’t be seen, double-check that the font have been 
+installed to a valid X font path, and that the fontconfig file was installed to 
+a valid fontconfig path. Alternatively try to install a :ref:`patched font 
+<installation-patched-fonts>`.
+
+Patched font installation
+-------------------------
+
+This is the preferred method, but it is not always available because not all 
+fonts were patched and not all fonts *can* be patched due to licensing issues.
+
+After downloading font the following should be done:
+
+#. Move the patched font to a valid X font path. Valid font paths can be 
+   listed with ``xset q``::
+
+      mv 'SomeFont for Powerline.otf' ~/.local/share/fonts/
+
+#. Update font cache for the path the font was moved to (root privileges may be 
+   needed for updating font cache for some paths)::
+
+      fc-cache -vf ~/.local/share/fonts/
+
+After installing patched font terminal emulator, GVim or whatever application 
+powerline should work with must be configured to use the patched font. The 
+correct font usually ends with *for Powerline*.
+
+If custom symbols cannot be seen then try closing all instances of the terminal 
+emulator. X server may need to be restarted for the changes to take effect.
+
+If custom symbols *still* can’t be seen then double-check that the font have 
+been installed to a valid X font path.

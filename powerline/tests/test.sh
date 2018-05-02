@@ -1,27 +1,42 @@
-#!/bin/sh
-: ${PYTHON:=python}
-FAILED=0
-export PYTHONPATH="${PYTHONPATH}:`realpath .`"
-for file in tests/test_*.py ; do
-	if ! ${PYTHON} $file --verbose --catch ; then
-		echo "Failed test(s) from $file"
-		FAILED=1
+#!/bin/bash
+. tests/shlib/common.sh
+
+enter_suite root
+
+if test "$TRAVIS" = true ; then
+	export PATH="$HOME/opt/fish/bin:${PATH}"
+	export PATH="$PWD/tests/bot-ci/deps/rc:$PATH"
+
+	if test "$PYTHON_IMPLEMENTATION" = "CPython" ; then
+		export PATH="$HOME/opt/zsh-${PYTHON_MM}${USE_UCS2_PYTHON:+-ucs2}/bin:${PATH}"
+	fi
+
+	if test -n "$USE_UCS2_PYTHON" ; then
+		export LD_LIBRARY_PATH="$HOME/opt/cpython-ucs2-$UCS2_PYTHON_VARIANT/lib${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
+		set +e
+		. virtualenvwrapper.sh
+		workon cpython-ucs2-$UCS2_PYTHON_VARIANT
+		set -e
+	else
+		LIBRARY_PATH="$(ldd "$(which python)" | grep libpython | sed 's/^.* => //;s/ .*$//')"
+		LIBRARY_DIR="$(dirname "${LIBRARY_PATH}")"
+		export LD_LIBRARY_PATH="$LIBRARY_DIR${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH"
+	fi
+fi
+
+export PYTHON="${PYTHON:=python}"
+export PYTHONPATH="${PYTHONPATH}${PYTHONPATH:+:}`realpath .`"
+for script in "$ROOT"/tests/test_*/test.sh ; do
+	test_name="${script##*/run_}"
+	if ! sh $script ; then
+		fail "${test_name%_tests.sh}" F "Failed $script"
 	fi
 done
-if ! ${PYTHON} scripts/powerline-lint -p powerline/config_files ; then
-	echo "Failed powerline-lint"
-	FAILED=1
+
+if test -e tests/failures ; then
+	echo "Some tests failed. Summary:"
+	cat tests/failures
+	rm tests/failures
 fi
-for script in tests/*.vim ; do
-	if ! vim -u NONE -S $script || test -f message.fail ; then
-		echo "Failed script $script" >&2
-		cat message.fail >&2
-		rm message.fail
-		FAILED=1
-	fi
-done
-if ! sh tests/test_shells/test.sh ; then
-	echo "Failed shells"
-	FAILED=1
-fi
-exit $FAILED
+
+exit_suite

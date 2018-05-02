@@ -2,8 +2,8 @@
 Pry.config.should_load_plugins = false
 Pry.plugins["doc"].activate!
 Pry.plugins["coolline"].activate!
-Pry.plugins["state"].activate!
-#Pry.plugins["byebug"].activate!
+#Pry.plugins["state"].activate!
+Pry.plugins["byebug"].activate!
 Pry.plugins["stack_explorer"].activate!
 
 # alias 'q' for 'exit'

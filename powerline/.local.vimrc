@@ -4,9 +4,8 @@
 "
 " [1]: http://www.vim.org/scripts/script.php?script_id=3393
 " [2]: https://github.com/thinca/vim-localrc
-setlocal noexpandtab
-" Despite promise somewhere alignment is done only using tabs. Thus setting 
-" &tabstop is a requirement.
-setlocal tabstop=4
-let g:syntastic_python_flake8_args = '--ignore=W191,E501,E121,E122,E123,E128,E225,W291,E126'
+let g:syntastic_python_flake8_args = '--ignore=W191,E501,E128,W291,E126,E101'
 let b:syntastic_checkers = ['flake8']
+unlet! g:python_space_error_highlight
+let g:pymode_syntax_indent_errors = 0
+let g:pymode_syntax_space_errors = 0

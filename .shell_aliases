@@ -66,4 +66,3 @@ dshell () {
 ## Load 'default' docker machine by default
   #dmenv default
 #fi
-

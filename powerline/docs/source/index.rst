@@ -3,23 +3,22 @@ Powerline
 *********
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
-   introduction
    overview
+   installation
+   usage
    configuration
-   tipstricks
-   fontpatching
-   license-credits
-
-Segments
-========
+   develop
+   troubleshooting
+   tips-and-tricks
+   license-and-credits
 
 .. toctree::
-   segments/common
-   segments/shell
-   segments/vim
+   :maxdepth: 2
+
+   commands
 
 Indices and tables
 ==================

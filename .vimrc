@@ -19,6 +19,10 @@ set wildmode=list:longest,list:full
 set hls
 set modelines=5
 
+
+set ttymouse=xterm2
+set mouse=a
+
 " FOLDS
 set nofoldenable
 set foldcolumn=2
@@ -192,5 +196,4 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
 
-set ttymouse=xterm2
-set mouse=a
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'

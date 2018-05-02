@@ -14,6 +14,8 @@
   #brcommit = !git commit -m $(git branch 2>/dev/null | grep ^\* | sed -e s/^\*[[:space:]]// | cut -f 1,2 -d \-) && git commit -m
   this = !git cl -n 1
   last = !git log -n 1 | head -n 1 | awk '{print $2}'
+  weeklyloc = !echo "Δ: $(git diff $(git log --since '1 week ago' --oneline | awk '{print $1}' | tail -n 1) --stat | tail -n 1 | awk '{print $4 + $6}') loc"
+  dailyloc = !echo "Δ: $(git diff $(git log --since 'yesterday' --oneline | awk '{print $1}' | tail -n 1) --stat | tail -n 1 | awk '{print $4 + $6}') loc"
 [color]
   branch = auto
   diff = auto
