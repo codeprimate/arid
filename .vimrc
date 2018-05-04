@@ -19,7 +19,6 @@ set wildmode=list:longest,list:full
 set hls
 set modelines=5
 
-
 set ttymouse=xterm2
 set mouse=a
 
@@ -197,3 +196,6 @@ if executable('ag')
 endif
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" Make double-<Esc> clear search highlights
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
