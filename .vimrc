@@ -198,4 +198,4 @@ endif
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Make double-<Esc> clear search highlights
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+"nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
