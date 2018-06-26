@@ -90,19 +90,8 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
   end
 
   # set logging to screen
-  if ENV.include?('RAILS_ENV')
-    # Rails 2.x
-    if !Object.const_defined?('RAILS_DEFAULT_LOGGER')
-      require 'logger'
-      Object.const_set('RAILS_DEFAULT_LOGGER', Logger.new(STDOUT))
-    end
-  else
-    # Rails 3
-    if Rails.logger and defined?(ActiveRecord)
-      Rails.logger = Logger.new(STDOUT)
-      ActiveRecord::Base.logger = Rails.logger
-    end
-  end
+  Rails.logger = Logger.new(STDOUT)
+  ActiveRecord::Base.logger = Rails.logger
 
   # .details method for pretty printing ActiveRecord's objects attributes
   class Object
