@@ -85,7 +85,6 @@ map <Leader>i :IndentGuidesToggle<CR>
 set clipboard=unnamed
 map <Leader>Y :w !pbcopy<CR><CR>
 map <Leader>P :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-
 " tab navigation with vim keys
 nnoremap th :tabfirst<CR>
 nnoremap tk :tabnext<CR>
@@ -198,4 +197,5 @@ endif
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Make double-<Esc> clear search highlights
-"nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+"nnoremap <silent> <Esc><Esc> <Esc>:nohl<CR><Esc>
+map <space>/ <Esc><Esc>:nohl<CR><Esc>
