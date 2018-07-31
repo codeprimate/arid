@@ -1,5 +1,8 @@
 # vim: set ft=zsh:
 
+### Editor
+export EDITOR=vim
+
 ### Tmuxinator Setup
 export DISABLE_AUTO_TITLE=true
 source $ARID_HOME/bin/tmuxinator.zsh
