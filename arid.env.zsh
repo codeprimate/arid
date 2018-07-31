@@ -12,3 +12,4 @@ source $ARID_HOME/.tools
 export PATH=$PATH:/$ARID_HOME/powerline/scripts
 source $ARID_HOME/powerline/powerline/bindings/zsh/powerline.zsh
 
+source $ARID_HOME/.load_last
