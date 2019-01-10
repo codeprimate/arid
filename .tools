@@ -8,6 +8,6 @@ export DISABLE_AUTO_TITLE=true
 source $ARID_HOME/bin/tmuxinator.zsh
 
 ### CLI Todo App
-#if [ -e "$HOME/.todo/todo_setup" ]; then
-  #source $HOME/.todo/todo_setup
-#fi
+if [ -e "$HOME/.todo/todo_setup" ]; then
+  source $HOME/.todo/todo_setup
+fi

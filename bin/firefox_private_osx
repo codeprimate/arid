@@ -1,0 +1,6 @@
+#!/bin/sh
+firefox=/Applications/Firefox.app/Contents/MacOS/firefox-bin
+PROFILEDIR=`mktemp -d tmp-fx-profile.XXXXXX.d`
+trap "{ rm -rf $PROFILEDIR; exit 255; }" EXIT
+$firefox -profile $PROFILEDIR -no-remote -new-instance
+rm -rf $PROFILEDIR

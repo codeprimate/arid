@@ -183,6 +183,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'passive_filetypes': ['sass', 'scss'] }
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -199,3 +200,5 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 " Make double-<Esc> clear search highlights
 "nnoremap <silent> <Esc><Esc> <Esc>:nohl<CR><Esc>
 map <space>/ <Esc><Esc>:nohl<CR><Esc>
+
+nmap =j :%!python -m json.tool<CR>

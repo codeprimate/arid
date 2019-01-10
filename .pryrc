@@ -9,18 +9,6 @@ Pry.plugins["stack_explorer"].activate!
 # alias 'q' for 'exit'
 Pry.config.commands.alias_command "q", "exit-all"
 
-# Load 'awesome_print'
-begin
-  require 'awesome_print'
-  require 'awesome_print/ext/active_record'
-  require 'awesome_print/ext/active_support'
-  AwesomePrint.pry!
-  Pry.config.print = proc { |output, value| output.puts "=> #{ap value}" }
-  puts "*** Using awesome_print to inspect return values in pry (from .pryrc)"
-rescue LoadError => err
-  puts "=> Unable to load awesome_print"
-end
-
 # Launch Pry with access to the entire Rails stack
 rails = File.join(Dir.getwd, 'config', 'environment.rb')
 
@@ -46,7 +34,7 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
       end
     end
   else
-    warn "[WARN] cannot load Rails console commands (Not on Rails2, Rails3 or Rails4?)"
+    warn "[WARN] cannot load Rails console commands"
   end
 
   # Rails' pry prompt
@@ -66,24 +54,6 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
   Pry.config.prompt = [ proc { |obj, nest_level, *| "#{prompt}> " % [rails_root, rails_env_prompt, obj, nest_level] },
                         proc { |obj, nest_level, *| "#{prompt}* " % [rails_root, rails_env_prompt, obj, nest_level] } ]
 
-  # [] acts as find()
-  ActiveRecord::Base.instance_eval { alias :[] :find } if defined?(ActiveRecord)
-
-  # Add Rails console helpers (like `reload!`) to pry
-  if defined?(Rails::ConsoleMethods)
-    extend Rails::ConsoleMethods
-  end
-
-  # r! to reload Rails console
-  if defined?(Rails) && Rails.version.to_f >= 3.0
-    def r!
-      reload!
-    end
-
-    # automatically call `reload` every time a new command is typed
-    #Pry.hooks.add_hook(:before_eval, :reload_everything) { reload!(false) }
-  end
-
   # sql for arbitrary SQL commands through the AR
   def sql(query)
     ActiveRecord::Base.connection.execute(query)
@@ -92,21 +62,6 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
   # set logging to screen
   Rails.logger = Logger.new(STDOUT)
   ActiveRecord::Base.logger = Rails.logger
-
-  # .details method for pretty printing ActiveRecord's objects attributes
-  class Object
-    def details
-      if self.respond_to?(:attributes) and self.attributes.any?
-        max = self.attributes.keys.sort_by { |k| k.size }.pop.size + 5
-        puts
-        self.attributes.keys.sort.each do |k|
-          puts sprintf("%-#{max}.#{max}s%s", k, self.try(k))
-        end
-        puts
-      end
-    end
-    alias :detailed :details
-  end
 
   # returns a collection of the methods that Rails added to the given class
   # http://lucapette.com/irb/rails-core-ext-and-irb/
@@ -129,5 +84,17 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
         self.public_methods.sort - Object.new.public_methods
       end
     end
+  end
+
+  # Load 'awesome_print'
+  begin
+    require 'awesome_print'
+    require 'awesome_print/ext/active_record'
+    require 'awesome_print/ext/active_support'
+    AwesomePrint.pry!
+    Pry.config.print = proc { |output, value| output.puts "=> #{ap value}" }
+    puts "*** Using awesome_print to inspect return values in pry (from .pryrc)"
+  rescue LoadError => err
+    puts "=> Unable to load awesome_print"
   end
 end
