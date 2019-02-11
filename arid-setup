@@ -3,7 +3,7 @@
 ARID_HOME="$HOME/.arid"
 
 ARID_FILE_ALIASES=".vimrc .ackrc .gemrc .gitignore .gitconfig .irbrc .pryrc .tmux.conf .zshrc .ctags .psqlrc"
-ARID_DIRECTORY_ALIASES=".vim .oh-my-zsh .config/powerline"
+ARID_DIRECTORY_ALIASES=".vim .oh-my-zsh .config/powerline .marker"
 
 echo "== Installing Arid dotfiles"
 
