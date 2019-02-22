@@ -16,3 +16,7 @@ fi
 if [ -d "$HOME/.meteor" ]; then
   export PATH="$PATH:$HOME/.meteor"
 fi
+
+if [ -d "/snap/bin" ]; then
+  export PATH="$PATH:/snap/bin"
+fi

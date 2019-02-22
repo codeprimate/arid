@@ -53,3 +53,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 ### OSX Development
 export SIMULATOR_PATH=$HOME/Library/Developer/CoreSimulator/Devices
+
+### SSH Agent
+eval `ssh-agent -s`
