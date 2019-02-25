@@ -61,7 +61,7 @@ au BufRead,BufNewFile *.rake set ft=ruby
 
 " Gist
 let g:gist_post_private = 1
-let g:gist_clip_command = 'pbcopy'
+"let g:gist_clip_command = 'pbcopy'
 
 " GPG integration
 au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
@@ -82,9 +82,9 @@ map <Leader>t :call TrimWhiteSpace()<CR>
 map <Leader>i :IndentGuidesToggle<CR>
 
 " Mac-Specific keybindings for system clipboard
-set clipboard=unnamed
-map <Leader>Y :w !pbcopy<CR><CR>
-map <Leader>P :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+"set clipboard=unnamed
+"map <Leader>Y :w !pbcopy<CR><CR>
+"map <Leader>P :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 " tab navigation with vim keys
 nnoremap th :tabfirst<CR>
 nnoremap tk :tabnext<CR>
@@ -169,7 +169,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "5"}
 let g:slime_no_mappings = 1
 xmap <Leader>s <Plug>SlimeRegionSend
 nmap <Leader>s <Plug>SlimeParagraphSend
-nmap <Leader>sv     <Plug>SlimeConfig
+nmap <Leader>sv <Plug>SlimeConfig
 
 " NERDTree Tabs
 let g:nerdtree_tabs_open_on_console_startup = 1
@@ -185,9 +185,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': ['sass', 'scss'] }
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 " Set Executable for Ack
 if executable('ag')
