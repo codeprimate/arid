@@ -13,11 +13,11 @@ patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset
 }
 
 function box_name {
-    [ -f ~/.box-name ] && cat ~/.box-name || hostname -s
+    [ -f ~/.box-name ] && cat ~/.box-name || echo ${SHORT_HOST:-$HOST}
 }
 
 PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}$(box_name)%{$reset_color%}:%{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
+%{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}$(box_name)%{$reset_color%}:%{$fg_bold[green]%}%~%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
 %(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )$ '
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" (%{$fg[magenta]%}branch: "
