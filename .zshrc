@@ -82,7 +82,3 @@ export PATH="$PATH"
 umask 0077
 
 source $HOME/.arid/arid.env.zsh
-
-if [ -e "$HOME/.todo/todo_setup" ]; then
-  source $HOME/.todo/todo_setup
-fi
