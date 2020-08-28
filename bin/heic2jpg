@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sips -s format jpeg -s formatOptions 80 $1 --out $1.jpg

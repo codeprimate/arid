@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-ps aux | grep -E '(ruby|spring)' | grep -v "kill_ruby" | grep -v "grep" | awk '{print $2}' | xargs kill -9
+ps aux | grep -E '(ruby|spring|puma)' | grep -v "kill_ruby" | grep -v "grep" | awk '{print $2}' | xargs kill -9

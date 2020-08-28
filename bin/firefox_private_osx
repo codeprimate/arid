@@ -1,6 +1,17 @@
-#!/bin/sh
-firefox=/Applications/Firefox.app/Contents/MacOS/firefox-bin
-PROFILEDIR=`mktemp -d tmp-fx-profile.XXXXXX.d`
-trap "{ rm -rf $PROFILEDIR; exit 255; }" EXIT
-$firefox -profile $PROFILEDIR -no-remote -new-instance
-rm -rf $PROFILEDIR
+#!/bin/bash
+function reset_profile {
+ rm -rf /Users/codeprimate/Library/Caches/Firefox/Profiles/exuloz1c.Anon
+ cp -r /Users/codeprimate/Library/Caches/Firefox/Profiles/exuloz1c.Anon.bak /Users/codeprimate/Library/Caches/Firefox/Profiles/exuloz1c.Anon
+}
+reset_profile
+/Applications/Firefox.app/Contents/MacOS/firefox-bin --profilemanager
+reset_profile
+trap reset_profile EXIT
+
+
+##!/bin/sh
+#firefox=/Applications/Firefox.app/Contents/MacOS/firefox-bin
+#PROFILEDIR=`mktemp -d tmp-fx-profile.XXXXXX.d`
+#trap "{ rm -rf $PROFILEDIR; exit 255; }" EXIT
+#$firefox -profile $PROFILEDIR -no-remote -new-instance
+#rm -rf $PROFILEDIR

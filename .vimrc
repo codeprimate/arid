@@ -66,7 +66,7 @@ let g:gist_clip_command = 'pbcopy'
 " GPG integration
 au BufNewFile,BufReadPre *.gpg :set secure viminfo= noswapfile nobackup nowritebackup history=0 binary
 au BufReadPost *.gpg :%!gpg -d 2>/dev/null
-au BufWritePre *.gpg :%!gpg -e -r 'patrick@patrick-morgan.net' 2>/dev/null
+au BufWritePre *.gpg :%!gpg -e -u 'EB4D4380FF34EBCCF021FEB65885A546278D30F8' 2>/dev/null
 au BufWritePost *.gpg u
 
 " RuboCop Ruby linter leader binding
@@ -151,6 +151,10 @@ augroup markdown
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 "" GVIM/mvim config
 if has("gui_running")
   colorscheme evening
@@ -202,3 +206,4 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 map <space>/ <Esc><Esc>:nohl<CR><Esc>
 
 nmap =j :%!python -m json.tool<CR>
+nmap =x :%!xmllint --format -<CR>

@@ -16,3 +16,7 @@ fi
 if [ -d "$HOME/.meteor" ]; then
   export PATH="$PATH:$HOME/.meteor"
 fi
+
+if [ -d "/Users/codeprimate/Library/Python/3.7/bin" ]; then
+  export PATH="$PATH:/Users/codeprimate/Library/Python/3.7/bin"
+fi

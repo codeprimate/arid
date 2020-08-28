@@ -1,3 +1,7 @@
 #!/bin/bash 
 
-convert "$1"  \( -clone 0 -background gray -shadow 80x3+10+10 \) \( -clone 0 -background gray -shadow 80x3-5-5 \) -reverse -background none -layers merge +repage "$1.shadow.png"
+ORIGINAL="$1"
+BASENAME="${ORIGINAL%%.*}"
+EXT="${ORIGINAL##*.}"
+OUTPUT="$BASENAME-shadow.$EXT"
+convert "$ORIGINAL"  \( -clone 0 -background gray -shadow 80x3+10+10 \) \( -clone 0 -background gray -shadow 80x3-5-5 \) -reverse -background none -layers merge +repage "$OUTPUT"
