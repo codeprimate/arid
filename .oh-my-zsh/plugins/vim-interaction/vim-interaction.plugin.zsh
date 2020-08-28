@@ -4,25 +4,15 @@
 # Derek Wyatt (derek@{myfirstnamemylastname}.org
 # 
 
-function resolveFile
-{
-  if [ -f "$1" ]; then
-    echo $(readlink -f "$1")
-  elif [[ "${1#/}" == "$1" ]]; then
-    echo "$(pwd)/$1"
-  else
-    echo $1
-  fi
-}
-
 function callvim
 {
   if [[ $# == 0 ]]; then
     cat <<EOH
-usage: callvim [-b cmd] [-a cmd] [file ... fileN]
+usage: callvim [-b cmd] [-a cmd] [-n name] [file ... fileN]
 
   -b cmd     Run this command in GVIM before editing the first file
   -a cmd     Run this command in GVIM after editing the first file
+  -n name    Name of the GVIM server to connect to
   file       The file to edit
   ... fileN  The other files to add to the argslist
 EOH
@@ -32,12 +22,15 @@ EOH
   local cmd=""
   local before="<esc>"
   local after=""
-  while getopts ":b:a:" option
+  local name="GVIM"
+  while getopts ":b:a:n:" option
   do
     case $option in
       a) after="$OPTARG"
          ;;
       b) before="$OPTARG"
+         ;;
+      n) name="$OPTARG"
          ;;
     esac
   done
@@ -48,16 +41,13 @@ EOH
   if [[ ${before#:} != $before && ${before%<cr>} == $before ]]; then
     before="$before<cr>"
   fi
-  local files=""
-  for f in $@
-  do
-    files="$files $(resolveFile $f)"
-  done
-  if [[ -n $files ]]; then
-    files=':args! '"$files<cr>"
+  local files
+  if [[ $# -gt 0 ]]; then
+    # absolute path of files resolving symlinks (:A) and quoting special chars (:q)
+    files=':args! '"${@:A:q}<cr>"
   fi
   cmd="$before$files$after"
-  gvim --remote-send "$cmd"
+  gvim --servername "$name" --remote-send "$cmd"
   if typeset -f postCallVim > /dev/null; then
     postCallVim
   fi
