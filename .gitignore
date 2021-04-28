@@ -11,3 +11,4 @@
 
 .lvimrc
 .rake_tasks
+*.swp

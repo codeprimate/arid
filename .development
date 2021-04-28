@@ -54,4 +54,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 ### OSX Development
 export SIMULATOR_PATH=$HOME/Library/Developer/CoreSimulator/Devices
 
-alias tcidku="ssh tdv2dokku"
+### improve compilation performance
+export MAKE="make -j$(nproc)"
