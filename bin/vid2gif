@@ -6,3 +6,6 @@ convert $1-step1.gif  -verbose -coalesce -layers OptimizeFrame $1-step2.gif && \
 gifsicle -O2 $1-step2.gif -o $1.gif && \
 
 rm $1-step1.gif $1-step2.gif 
+
+
+#ffmpeg -i "INPUT_PATH.mp4" -vf "fps=16,scale=600:-2:flags=lanczos,split[s0][s1];\ [s0]palettegen=max_colors=128:reserve_transparent=0[p];\ [s1][p]paletteuse" -y "OUTPUT_PATH.gif"
